@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SN Deals | Premium Online Deals Hub</title>
+    <title>SN Deals | Premium Discount Hub</title>
     <style>
         body{font-family:'Segoe UI',Arial,sans-serif;margin:0;background:#f6f7fb;color:#1f2937}
-        .site-header{background:linear-gradient(135deg,#1565c0,#0d47a1);color:#fff;padding:40px 16px;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,0.1)}
-        .site-header h1 { margin: 0; font-size: 2.6rem; font-weight: 800; letter-spacing: -0.5px; }
+        .site-header{background:linear-gradient(135deg,#1d4ed8,#1e40af);color:#fff;padding:30px 16px;text-align:center;box-shadow:0 4px 15px rgba(29,78,216,0.15)}
+        .site-header h1 { margin: 0; font-size: 2.4rem; font-weight: 800; }
         .site-header p { margin: 8px 0 0 0; opacity: 0.9; font-size: 1.1rem; }
         .site-nav{background:#0f172a;padding:.75rem 1rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
         .nav-list{list-style:none;margin:0;padding:0;display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
@@ -16,32 +16,36 @@
         .nav-list a[aria-current="page"]{background:#fff;color:#0f172a;font-weight:700}
         
         .main{max-width:1100px;margin:0 auto;padding:30px 16px 50px}
-        .welcome-box { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 25px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-bottom: 35px; }
-        .welcome-box h2 { margin-top:0; color:#0f172a; font-size:1.8rem; }
+        .intro-box{background:#fff;border:1px solid #e5e7eb;border-radius:1rem;padding:24px;text-align:center;margin-bottom:32px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05)}
+        .intro-box h2 { margin: 0 0 10px 0; color: #0f172a; font-size: 1.8rem; }
+        .intro-box p { margin: 0; color: #4b5563; font-size: 1.05rem; line-height: 1.5; }
+        .section-title { color: #0f172a; font-size: 1.4rem; margin-bottom: 20px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
         
-        .section-title { color: #0f172a; font-size: 1.5rem; margin-bottom: 20px; font-weight: 700; border-left: 5px solid #2563eb; padding-left: 10px; }
+        /* 3 Main Partners */
+        .partners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .partner-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 22px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+        .partner-card:hover { transform: translateY(-5px); }
+        .partner-emoji { font-size: 3.5rem; margin-bottom: 12px; }
+        .partner-card h3 { margin: 10px 0 8px; color: #0f172a; font-size: 1.3rem; }
+        .partner-card p { color: #6b7280; font-size: 0.9rem; margin-bottom: 18px; line-height: 1.4; }
+        .btn-blue { display: block; padding: 12px; background: #2563eb; color: #fff; text-decoration: none; border-radius: 10px; font-weight: 700; transition: background 0.2s; }
+        .btn-blue:hover { background: #1d4ed8; }
         
-        /* 3 Main Brand Grid */
-        .brand-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .brand-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 25px; box-shadow: 0 6px 18px rgba(0,0,0,0.04); text-align: center; transition: transform 0.2s; display:flex; flex-direction:column; justify-content:space-between; }
-        .brand-card:hover { transform: translateY(-5px); }
-        .brand-logo { font-size: 3.5rem; margin-bottom: 15px; }
-        .brand-card h3 { margin: 0 0 10px 0; color: #0f172a; font-size: 1.5rem; }
-        .brand-card p { color: #4b5563; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; }
+        /* Mega Store section with 5 buttons */
+        .mega-banner { background: linear-gradient(135deg, #10b981, #059669); color: white; border-radius: 16px; padding: 30px 24px; text-align: center; box-shadow: 0 10px 25px rgba(16,185,129,0.2); }
+        .mega-banner h2 { margin: 0 0 10px 0; font-size: 1.8rem; font-weight: 800; }
+        .mega-banner p { margin: 0 0 25px 0; font-size: 1.05rem; opacity: 0.9; }
         
-        .btn { display: inline-block; width: 85%; padding: 12px; background: #2563eb; color: #fff; text-decoration: none; border-radius: 10px; font-weight: 700; transition: background 0.2s; margin: 0 auto; }
-        .btn:hover { background: #1d4ed8; }
-        .btn.amazon { background: #ff9900; color: #111; }
-        .btn.amazon:hover { background: #e68a00; }
+        /* 5 Buttons Row/Grid */
+        .stores-btn-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+        .store-direct-btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; padding: 12px 24px; border-radius: 30px; font-weight: 700; font-size: 1rem; color: #111; background: #fff; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .store-direct-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
         
-        /* Quick Banner for Store Offers */
-        .banner { background: linear-gradient(135deg, #10b981, #059669); color: white; border-radius: 16px; padding: 30px; text-align: center; margin-top: 20px; box-shadow: 0 4px 15px rgba(16,185,129,0.2); }
-        .banner h3 { margin: 0 0 10px 0; font-size: 1.8rem; }
-        .banner p { margin: 0 0 20px 0; font-size: 1.05rem; opacity: 0.95; }
-        .banner-btn { display: inline-block; padding: 14px 30px; background: white; color: #059669; text-decoration: none; border-radius: 30px; font-weight: 700; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .banner-btn:hover { transform: scale(1.05); }
-
-        @media (max-width:640px){.nav-list a{width:100%;text-align:center}}
+        @media (max-width:640px){
+            .nav-list a{width:100%;text-align:center}
+            .stores-btn-grid { flex-direction: column; }
+            .store-direct-btn { width: 100%; justify-content: center; box-sizing: border-box; }
+        }
     </style>
 </head>
 <body>
@@ -59,55 +63,58 @@
             <li><a href="StoreOffers.html" style="background: #10b981; color: white; border-radius: 8px;">🔥 All Store Offers</a></li>
         </ul>
     </nav>
-    
+
     <main class="main">
-        <div class="welcome-box">
+        <div class="intro-box">
             <h2>Welcome to SN Deals Hub</h2>
             <p>Discover handpicked curated deals across global top-tier shopping networks. Select a brand below to browse their dedicated premium pages.</p>
         </div>
-        
+
         <h2 class="section-title">⭐ Featured Partners</h2>
-        <div class="brand-grid">
-            <!-- Brand 1 -->
-            <div class="brand-card">
+        <div class="partners-grid">
+            <div class="partner-card">
                 <div>
-                    <div class="brand-logo">📦</div>
+                    <div class="partner-emoji">📦</div>
                     <h3>Amazon</h3>
                     <p>Grab top-tier mobile offers, electronics, and daily essentials with maximum discount benefits.</p>
                 </div>
-                <a href="Mobiles.html" class="btn amazon">Explore Amazon Deals</a>
+                <a href="Mobiles.html" class="btn-blue" style="background: #ff9900; color: #111;">Explore Amazon Deals</a>
             </div>
             
-            <!-- Brand 2 -->
-            <div class="brand-card">
+            <div class="partner-card">
                 <div>
-                    <div class="brand-logo">⚡</div>
+                    <div class="partner-emoji">⚡</div>
                     <h3>MaviGadget</h3>
                     <p>Your portal for super innovative, high-tech, and amazing modern lifestyle gadgets.</p>
                 </div>
-                <a href="Electronics.html" class="btn">Explore MaviGadget</a>
+                <a href="Electronics.html" class="btn-blue">Explore MaviGadget</a>
             </div>
-            
-            <!-- Brand 3 -->
-            <div class="brand-card">
+
+            <div class="partner-card">
                 <div>
-                    <div class="brand-logo">👗</div>
+                    <div class="partner-emoji">🧸</div>
                     <h3>NikolaToy</h3>
                     <p>Trending style collections, footwear, apparel, and toys straight from direct warehouse stores.</p>
                 </div>
-                <a href="Fashion.html" class="btn">Explore NikolaToy</a>
+                <a href="Fashion.html" class="btn-blue" style="background: #ec4899;">Explore NikolaToy</a>
             </div>
         </div>
 
-        <!-- Banner for other 22+ links -->
-        <div class="banner">
-            <h3>🔥 Mega Store Discounts & Loot Deals!</h3>
-            <p>Flipkart, Myntra, Ajio, along with 20+ other secret surprise loot links are waiting for you inside our master hub.</p>
-            <a href="StoreOffers.html" class="banner-btn">View All 22+ Deals Now</a>
+        <!-- Mega Store Section with the 5 Store Buttons -->
+        <div class="mega-banner">
+            <h2>🔥 Mega Store Discounts & Loot Deals!</h2>
+            <p>Directly unlock the best working offers on India's top shopping networks:</p>
+            <div class="stores-btn-grid">
+                <a href="https://fktr.in/HhQbd65" class="store-direct-btn" target="_blank" rel="noopener noreferrer">🛍️ Flipkart</a>
+                <a href="https://myntr.it/lc2Qacn" class="store-direct-btn" target="_blank" rel="noopener noreferrer">👗 Myntra</a>
+                <a href="https://ajio.in/A6R4ac6" class="store-direct-btn" target="_blank" rel="noopener noreferrer">👕 Ajio</a>
+                <a href="https://bitli.in/ECUfnvo" class="store-direct-btn" target="_blank" rel="noopener noreferrer">🏬 Hamara Mall</a>
+                <a href="https://bitli.in/kk4kqbD" class="store-direct-btn" target="_blank" rel="noopener noreferrer">💖 Meesho</a>
+            </div>
         </div>
     </main>
 
-    <footer style="text-align: center; padding: 30px; color: #6b7280; font-size: 0.9rem; margin-top: 40px; border-top: 1px solid #e5e7eb;">
+    <footer style="text-align: center; padding: 25px; color: #6b7280; font-size: 0.9rem; margin-top: 40px; border-top: 1px solid #e5e7eb;">
         &copy; SN Deals. All rights reserved.
     </footer>
 </body>
