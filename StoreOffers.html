@@ -15,27 +15,24 @@
         .nav-list a:hover{background:rgba(255,255,255,.16)}
         .nav-list a[aria-current="page"]{background:#fff;color:#0f172a;font-weight:700}
         
-        .main{max-width:1200px;margin:0 auto;padding:30px 16px 50px}
+        .main{max-width:1200px;margin:0 auto;padding:40px 16px 50px}
         .section-title { color: #0f172a; font-size: 1.6rem; margin-bottom: 25px; font-weight: 700; text-align: center; }
         
-        /* 22+ Deal Cards Grid */
-        .deals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
-        .deal-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 18px; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+        .deals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .deal-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 22px; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
         .deal-card:hover { transform: translateY(-4px); }
         
-        /* Brand Specific Tag Styles */
         .tag { position: absolute; top: 12px; right: 12px; font-size: 0.75rem; font-weight: 800; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; }
         .tag.flipkart { background: #fee2e2; color: #dc2626; }
         .tag.myntra { background: #fef3c7; color: #d97706; }
         .tag.ajio { background: #e0f2fe; color: #0284c7; }
         .tag.loot { background: #dcfce7; color: #15803d; }
         
-        .brand-emoji { font-size: 2rem; margin-bottom: 10px; }
-        .deal-card h3 { margin: 8px 0 5px 0; color: #0f172a; font-size: 1.1rem; font-weight: 700; }
-        .deal-card p { color: #6b7280; font-size: 0.85rem; margin: 0 0 15px 0; line-height: 1.4; }
+        .brand-emoji { font-size: 2.2rem; margin-bottom: 10px; }
+        .deal-card h3 { margin: 8px 0 5px 0; color: #0f172a; font-size: 1.2rem; font-weight: 700; }
+        .deal-card p { color: #6b7280; font-size: 0.9rem; margin: 0 0 20px 0; line-height: 1.5; }
         
-        /* Professional CTA Button */
-        .deal-btn { display: block; text-align: center; padding: 10px; background: #10b981; color: white; text-decoration: none; border-radius: 8px; font-size: 0.9rem; font-weight: 700; transition: background 0.2s; }
+        .deal-btn { display: block; text-align: center; padding: 12px; background: #10b981; color: white; text-decoration: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700; transition: background 0.2s; }
         .deal-btn:hover { background: #059669; }
         
         @media (max-width:640px){.nav-list a{width:100%;text-align:center}}
@@ -44,7 +41,7 @@
 <body>
     <header class="site-header">
         <h1>Mega Store Offers</h1>
-        <p>Live Loot Deals, Coupon Discounts & Special Partner Links</p>
+        <p>Verified Live Loot Deals, Coupon Discounts & Store Links</p>
     </header>
     
     <nav class="site-nav">
@@ -58,175 +55,61 @@
     </nav>
     
     <main class="main">
-        <h2 class="section-title">🎁 All 22+ Exclusive Shopping Links</h2>
+        <h2 class="section-title">🎁 Handpicked Stores & Secret Discounts</h2>
         <div class="deals-grid">
             
-            <!-- Flipkart Deals -->
+            <!-- Flipkart -->
             <div class="deal-card">
                 <span class="tag flipkart">Up to 80% Off</span>
                 <div class="brand-emoji">🛍️</div>
-                <h3>Flipkart Super Deal 1</h3>
-                <p>Exclusive daily deals on fashion, lifestyle and gadgets.</p>
-                <a href="https://fktr.in/HhQbd65" class="deal-btn" target="_blank" rel="noopener noreferrer">Unlock Deal</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag flipkart">Super Deal</span>
-                <div class="brand-emoji">🛍️</div>
-                <h3>Flipkart Super Deal 2</h3>
-                <p>Big savings on home essentials and electronics.</p>
-                <a href="https://fktr.in/XRAn1q1" class="deal-btn" target="_blank" rel="noopener noreferrer">Unlock Deal</a>
+                <h3>Flipkart Mega Store</h3>
+                <p>Shop electronic gadgets, fashion styles, and home appliances at official loot prices.</p>
+                <a href="https://fktr.in/HhQbd65" class="deal-btn" target="_blank" rel="noopener noreferrer">Unlock Flipkart Deal</a>
             </div>
 
-            <!-- Myntra Deals -->
+            <!-- Myntra -->
             <div class="deal-card">
-                <span class="tag myntra">Myntra Special</span>
+                <span class="tag myntra">Min 60% Off</span>
                 <div class="brand-emoji">👗</div>
-                <h3>Myntra Best Offers</h3>
-                <p>Premium lifestyle and fashion wear coupons.</p>
-                <a href="https://myntr.it/lc2Qacn" class="deal-btn" target="_blank" rel="noopener noreferrer">Shop Now</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag myntra">Hot Trend</span>
-                <div class="brand-emoji">💄</div>
-                <h3>Myntra Hot Trends</h3>
-                <p>Trending cosmetics and accessories at best value.</p>
-                <a href="https://myntr.it/lc2Qacn" class="deal-btn" target="_blank" rel="noopener noreferrer">Shop Now</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag myntra">Special Price</span>
-                <div class="brand-emoji">👟</div>
-                <h3>Myntra Special Deal 1</h3>
-                <p>Branded sports footwear price cut offers.</p>
-                <a href="https://myntr.it/lc2Qacn" class="deal-btn" target="_blank" rel="noopener noreferrer">Shop Now</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag myntra">Special Price</span>
-                <div class="brand-emoji">🎒</div>
-                <h3>Myntra Special Deal 2</h3>
-                <p>Accessories, backpacks, and luxury wear.</p>
-                <a href="https://myntr.it/lc2Qacn" class="deal-btn" target="_blank" rel="noopener noreferrer">Shop Now</a>
+                <h3>Myntra Fashion Deals</h3>
+                <p>Upgrade your wardrobe with ultimate premium fashion, sneakers, and cosmetic collections.</p>
+                <a href="https://myntr.it/lc2Qacn" class="deal-btn" target="_blank" rel="noopener noreferrer">Unlock Myntra Deal</a>
             </div>
 
-            <!-- Ajio Deals -->
+            <!-- Ajio -->
             <div class="deal-card">
-                <span class="tag ajio">Ajio Premium</span>
+                <span class="tag ajio">Up to 70% Off</span>
                 <div class="brand-emoji">👕</div>
-                <h3>Ajio Premium Deals</h3>
-                <p>Get up to 70% off on premium apparel brands.</p>
-                <a href="https://ajio.in/A6R4ac6" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag ajio">Fashion Deal</span>
-                <div class="brand-emoji">👓</div>
-                <h3>Ajio Fashion Deals</h3>
-                <p>Eyewear, watches, and smart lifestyle products.</p>
-                <a href="https://ajio.in/A6R4ac6" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag ajio">Trendy</span>
-                <div class="brand-emoji">👠</div>
-                <h3>Ajio Trendy Collection</h3>
-                <p>The best modern trends at reasonable direct pricing.</p>
-                <a href="https://ajio.in/A6R4ac6" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+                <h3>Ajio Premium Trends</h3>
+                <p>Trending daily streetwear and premium brand apparel with instant coupons applied.</p>
+                <a href="https://ajio.in/A6R4ac6" class="deal-btn" target="_blank" rel="noopener noreferrer">Unlock Ajio Deal</a>
             </div>
 
-            <!-- EarnKaro & Others -->
+            <!-- EarnKaro Cashback -->
             <div class="deal-card">
-                <span class="tag loot">Best Offer</span>
+                <span class="tag loot">Extra Cashback</span>
                 <div class="brand-emoji">💰</div>
-                <h3>Best EarnKaro Offers</h3>
-                <p>Extra cashback and heavy rewards on every checkout.</p>
-                <a href="https://earnkaro.com" class="deal-btn" target="_blank" rel="noopener noreferrer">View Cashback</a>
+                <h3>EarnKaro Rewards</h3>
+                <p>Earn heavy real cashback on every checkout you make across top internet brands.</p>
+                <a href="https://earnkaro.com" class="deal-btn" target="_blank" rel="noopener noreferrer">Open EarnKaro Page</a>
             </div>
 
-            <!-- Special Discounts & Mega Saving Links -->
+            <!-- Special Discount 1 -->
             <div class="deal-card">
-                <span class="tag loot">Loot Deal</span>
+                <span class="tag loot">Loot Offer</span>
                 <div class="brand-emoji">💥</div>
-                <h3>Special Discount 1</h3>
-                <p>Super fast moving stock items at dirt-cheap prices.</p>
-                <a href="https://bitli.in/ECUfnvo" class="deal-btn" target="_blank" rel="noopener noreferrer">Get Discount</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag loot">Loot Deal</span>
-                <div class="brand-emoji">💥</div>
-                <h3>Special Discount 2</h3>
-                <p>Instant activation link for festival discounts.</p>
-                <a href="https://bitli.in/kk4kqbD" class="deal-btn" target="_blank" rel="noopener noreferrer">Get Discount</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag loot">Loot Deal</span>
-                <div class="brand-emoji">💥</div>
-                <h3>Special Discount 3</h3>
-                <p>Unlimited stock coupon link for ultimate saving.</p>
-                <a href="https://bitli.in/kk4kqbD" class="deal-btn" target="_blank" rel="noopener noreferrer">Get Discount</a>
+                <h3>Special Loot Link 1</h3>
+                <p>Access high-demand direct factory outlets with unbelievable price drops.</p>
+                <a href="https://bitli.in/ECUfnvo" class="deal-btn" target="_blank" rel="noopener noreferrer">Claim Loot Offer</a>
             </div>
 
-            <!-- Mega Saving Links 4 to 8 -->
+            <!-- Special Discount 2 -->
             <div class="deal-card">
-                <span class="tag loot">Mega Saving</span>
-                <div class="brand-emoji">🤑</div>
-                <h3>Mega Saving Link 4</h3>
-                <p>Exclusive daily utility items with amazing flat offers.</p>
-                <a href="#" class="deal-btn">Get Deal</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag loot">Mega Saving</span>
-                <div class="brand-emoji">🤑</div>
-                <h3>Mega Saving Link 5</h3>
-                <p>Best picks on home decor and essentials.</p>
-                <a href="#" class="deal-btn">Get Deal</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag loot">Mega Saving</span>
-                <div class="brand-emoji">🤑</div>
-                <h3>Mega Saving Link 6</h3>
-                <p>Flash sale items with live price tracking.</p>
-                <a href="#" class="deal-btn">Get Deal</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag loot">Mega Saving</span>
-                <div class="brand-emoji">🤑</div>
-                <h3>Mega Saving Link 7</h3>
-                <p>Grab electronics and smart gadgets on budget.</p>
-                <a href="#" class="deal-btn">Get Deal</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag loot">Mega Saving</span>
-                <div class="brand-emoji">🤑</div>
-                <h3>Mega Saving Link 8</h3>
-                <p>Ultimate lifestyle choices at half prices.</p>
-                <a href="#" class="deal-btn">Get Deal</a>
-            </div>
-
-            <!-- Premium & Surprise Deals -->
-            <div class="deal-card">
-                <span class="tag loot">Surprise Offer</span>
-                <div class="brand-emoji">🎁</div>
-                <h3>Surprise Deal 13</h3>
-                <p>Mysterious big brand products at jaw-dropping rates.</p>
-                <a href="#" class="deal-btn">Reveal Price</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag loot">Surprise Offer</span>
-                <div class="brand-emoji">🎁</div>
-                <h3>Surprise Deal 14</h3>
-                <p>Super deal of the day. Stocks end fast.</p>
-                <a href="#" class="deal-btn">Reveal Price</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag loot">Star Deal</span>
-                <div class="brand-emoji">⭐</div>
-                <h3>Star Offer 17</h3>
-                <p>Highest rated products with best available cashback.</p>
-                <a href="#" class="deal-btn">Unlock Star Deal</a>
-            </div>
-            <div class="deal-card">
-                <span class="tag loot">Loot Only</span>
-                <div class="brand-emoji">🚀</div>
-                <h3>Loot Deal 20</h3>
-                <p>Absolute lowest price ever. Buy before stocks end!</p>
-                <a href="#" class="deal-btn">Loot Now</a>
+                <span class="tag loot">Loot Offer</span>
+                <div class="brand-emoji">⚡</div>
+                <h3>Special Loot Link 2</h3>
+                <p>Instant flash coupon links activated directly for festival & seasonal sales.</p>
+                <a href="https://bitli.in/kk4kqbD" class="deal-btn" target="_blank" rel="noopener noreferrer">Claim Loot Offer</a>
             </div>
 
         </div>
