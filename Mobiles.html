@@ -3,88 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SN Deals | Mobiles</title>
+    <title>SN Deals | Amazon Exclusive Offers</title>
     <style>
-        body{font-family:Arial,sans-serif;margin:0;background:#f6f7fb;color:#1f2937}
-        .site-header{background:linear-gradient(135deg,#1565c0,#0d47a1);color:#fff;padding:28px 16px;text-align:center}
-        .site-nav{background:#0f172a;padding:.75rem 1rem}
+        body{font-family:'Segoe UI',Arial,sans-serif;margin:0;background:#f6f7fb;color:#1f2937}
+        .site-header{background:linear-gradient(135deg,#ff9900,#e68a00);color:#111;padding:30px 16px;text-align:center;box-shadow:0 4px 15px rgba(255,153,0,0.15)}
+        .site-header h1 { margin: 0; font-size: 2.4rem; font-weight: 800; }
+        .site-header p { margin: 8px 0 0 0; opacity: 0.9; font-size: 1.1rem; font-weight: 600; }
+        .site-nav{background:#0f172a;padding:.75rem 1rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
         .nav-list{list-style:none;margin:0;padding:0;display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-        .nav-list a{display:inline-block;text-decoration:none;color:#fff;padding:.6rem .95rem;border-radius:.55rem;font-weight:500}
+        .nav-list a{display:inline-block;text-decoration:none;color:#fff;padding:.6rem .95rem;border-radius:.55rem;font-weight: 600;font-size:0.95rem;transition:all 0.2s;}
         .nav-list a:hover{background:rgba(255,255,255,.16)}
         .nav-list a[aria-current="page"]{background:#fff;color:#0f172a;font-weight:700}
         
-        .main{max-width:1100px;margin:0 auto;padding:24px 16px 40px}
-        .section-title { color: #0f172a; font-size: 1.6rem; margin-bottom: 24px; text-align: center; font-weight: 700; }
+        .main{max-width:1100px;margin:0 auto;padding:30px 16px 50px}
+        .section-title { color: #0f172a; font-size: 1.6rem; margin-bottom: 25px; font-weight: 700; text-align: center; }
         
-        /* Professional Product List Grid */
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .product-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+        .product-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 22px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
         .product-card:hover { transform: translateY(-5px); }
-        .product-emoji { font-size: 3rem; margin-bottom: 12px; }
-        .product-card h3 { margin: 10px 0 8px; color: #0f172a; font-size: 1.2rem; }
-        .product-card p { color: #6b7280; font-size: 0.9rem; margin-bottom: 16px; line-height: 1.4; }
+        .product-emoji { font-size: 3.5rem; margin-bottom: 12px; }
+        .product-card h3 { margin: 10px 0 8px; color: #0f172a; font-size: 1.3rem; }
+        .product-card p { color: #6b7280; font-size: 0.9rem; margin-bottom: 18px; line-height: 1.4; }
         
-        /* Amazon Style Button */
         .buy-btn { display: block; padding: 12px; background: #ff9900; color: #111; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 0.95rem; transition: background 0.2s; }
         .buy-btn:hover { background: #e68a00; }
-        /* Flipkart/EarnKaro Button */
-        .buy-btn.fk { background: #10b981; color: #fff; }
-        .buy-btn.fk:hover { background: #059669; }
-
         @media (max-width:640px){.nav-list a{width:100%;text-align:center}}
     </style>
 </head>
 <body>
     <header class="site-header">
-        <h1>SN Deals</h1>
-        <p>Premium Mobile & Accessories Deals</p>
+        <h1>Amazon Store</h1>
+        <p>Top Handpicked Gadgets, Mobiles & Daily Deals</p>
     </header>
     
     <nav class="site-nav">
         <ul class="nav-list">
             <li><a href="index.html">Home</a></li>
-            <li><a href="Mobiles.html" aria-current="page">Mobiles</a></li>
-            <li><a href="Electronics.html">Electronics</a></li>
-            <li><a href="Fashion.html">Fashion</a></li>
+            <li><a href="Mobiles.html" aria-current="page">Amazon</a></li>
+            <li><a href="Electronics.html">MaviGadget</a></li>
+            <li><a href="Fashion.html">NikolaToy</a></li>
+            <li><a href="StoreOffers.html" style="background: #10b981; color: white; border-radius: 8px;">🔥 All Store Offers</a></li>
         </ul>
     </nav>
 
     <main class="main">
-        <h2 class="section-title">📱 Exclusive Smartphone Offers</h2>
+        <h2 class="section-title">📦 Premium Amazon Offers</h2>
         <div class="product-grid">
-            <!-- Product 1 -->
             <div class="product-card">
                 <div>
-                    <div class="product-emoji">📦</div>
+                    <div class="product-emoji">📱</div>
                     <h3>Amazon Smartphone Deals</h3>
-                    <p>Get incredible price drops and bank discounts on top brands directly on Amazon.</p>
+                    <p>Get incredible price drops and extra bank discounts on top-rated smartphones.</p>
                 </div>
                 <a href="https://amzn.to/446v3Rj" class="buy-btn" target="_blank" rel="noopener noreferrer">Shop on Amazon</a>
             </div>
-
-            <!-- Product 2 -->
+            
             <div class="product-card">
                 <div>
-                    <div class="product-emoji">⚡</div>
-                    <h3>Premium Mobile Offer 1</h3>
-                    <p>Exclusive limited-time discount link on highly rated devices.</p>
+                    <div class="product-emoji">🎧</div>
+                    <h3>Audio & Accessories</h3>
+                    <p>Flat discounts on wireless earphones, Bluetooth speakers, and power banks.</p>
                 </div>
-                <a href="https://bitli.in/ECUfnvo" class="buy-btn fk" target="_blank" rel="noopener noreferrer">Grab Offer Now</a>
+                <a href="https://amzn.to/446v3Rj" class="buy-btn" target="_blank" rel="noopener noreferrer">Explore Audio Deals</a>
             </div>
 
-            <!-- Product 3 -->
             <div class="product-card">
                 <div>
-                    <div class="product-emoji">🔥</div>
-                    <h3>Premium Mobile Offer 2</h3>
-                    <p>Grab budget smartphones with extreme price cuts.</p>
+                    <div class="product-emoji">🏠</div>
+                    <h3>Smart Home & Essentials</h3>
+                    <p>Upgrade your space with automated smart plugs, lights, and home electronics.</p>
                 </div>
-                <a href="https://bitli.in/kk4kqbD" class="buy-btn fk" target="_blank" rel="noopener noreferrer">Grab Offer Now</a>
+                <a href="https://amzn.to/446v3Rj" class="buy-btn" target="_blank" rel="noopener noreferrer">View Home Offers</a>
             </div>
         </div>
     </main>
 
-    <footer style="text-align: center; padding: 25px; color: #6b7280; font-size: 0.9rem; margin-top: 40px;">
+    <footer style="text-align: center; padding: 25px; color: #6b7280; font-size: 0.9rem; margin-top: 40px; border-top: 1px solid #e5e7eb;">
         &copy; SN Deals. All rights reserved.
     </footer>
 </body>
