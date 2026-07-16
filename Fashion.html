@@ -3,94 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SN Deals | Fashion</title>
+    <title>SN Deals | NikolaToy & Fashion Hub</title>
     <style>
-        body{font-family:Arial,sans-serif;margin:0;background:#f6f7fb;color:#1f2937}
-        .site-header{background:linear-gradient(135deg,#1565c0,#0d47a1);color:#fff;padding:28px 16px;text-align:center}
-        .site-nav{background:#0f172a;padding:.75rem 1rem}
+        body{font-family:'Segoe UI',Arial,sans-serif;margin:0;background:#f6f7fb;color:#1f2937}
+        .site-header{background:linear-gradient(135deg,#ec4899,#db2777);color:#fff;padding:30px 16px;text-align:center;box-shadow:0 4px 15px rgba(236,72,153,0.15)}
+        .site-header h1 { margin: 0; font-size: 2.4rem; font-weight: 800; }
+        .site-header p { margin: 8px 0 0 0; opacity: 0.95; font-size: 1.1rem; }
+        .site-nav{background:#0f172a;padding:.75rem 1rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
         .nav-list{list-style:none;margin:0;padding:0;display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-        .nav-list a{display:inline-block;text-decoration:none;color:#fff;padding:.6rem .95rem;border-radius:.55rem}
-        .nav-list a:hover,.nav-list a:focus{background:rgba(255,255,255,.16);outline:none}
+        .nav-list a{display:inline-block;text-decoration:none;color:#fff;padding:.6rem .95rem;border-radius:.55rem;font-weight: 600;font-size:0.95rem;transition:all 0.2s;}
+        .nav-list a:hover{background:rgba(255,255,255,.16)}
         .nav-list a[aria-current="page"]{background:#fff;color:#0f172a;font-weight:700}
-        .main{max-width:1100px;margin:0 auto;padding:24px 16px 40px}
         
-        /* Affiliate Section and Buttons CSS */
-        .affiliate-section { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 24px; box-shadow: 0 6px 24px rgba(15,23,42,.05); margin-top: 20px; }
-        .section-title { color: #0f172a; font-size: 1.5rem; margin-top: 0; margin-bottom: 20px; text-align: center; font-weight: 700; }
-        .links-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-        .links-list li { margin: 0; }
-        .links-list a { display: flex; align-items: center; justify-content: center; padding: 14px 20px; background: #2563eb; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease; box-shadow: 0 4px 6px rgba(37,99,235,0.15); text-align: center; }
-        .links-list a:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(37,99,235,0.25); }
-        .links-list a.earnkaro-btn { background: #10b981; box-shadow: 0 4px 6px rgba(16,185,129,0.15); }
-        .links-list a.earnkaro-btn:hover { background: #059669; box-shadow: 0 6px 12px rgba(16,185,129,0.25); }
+        .main{max-width:1100px;margin:0 auto;padding:30px 16px 50px}
+        .section-title { color: #0f172a; font-size: 1.6rem; margin-bottom: 25px; font-weight: 700; text-align: center; }
         
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .product-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 22px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-emoji { font-size: 3.5rem; margin-bottom: 12px; }
+        .product-card h3 { margin: 10px 0 8px; color: #0f172a; font-size: 1.3rem; }
+        .product-card p { color: #6b7280; font-size: 0.9rem; margin-bottom: 18px; line-height: 1.4; }
+        
+        .buy-btn { display: block; padding: 12px; background: #ec4899; color: #fff; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 0.95rem; transition: background 0.2s; }
+        .buy-btn:hover { background: #db2777; }
         @media (max-width:640px){.nav-list a{width:100%;text-align:center}}
     </style>
 </head>
 <body>
     <header class="site-header">
-        <h1>SN Deals</h1>
-        <p>Premium Fashion Deals & Offers</p>
+        <h1>NikolaToy Store</h1>
+        <p>Premium Toys, Creative Gifts, Kids Apparel & Lifestyle Styles</p>
     </header>
     
-    <nav class="site-nav" aria-label="Main navigation">
+    <nav class="site-nav">
         <ul class="nav-list">
             <li><a href="index.html">Home</a></li>
-            <li><a href="Mobiles.html">Mobiles</a></li>
-            <li><a href="Electronics.html">Electronics</a></li>
-            <li><a href="Fashion.html" aria-current="page">Fashion</a></li>
+            <li><a href="Mobiles.html">Amazon</a></li>
+            <li><a href="Electronics.html">MaviGadget</a></li>
+            <li><a href="Fashion.html" aria-current="page">NikolaToy</a></li>
+            <li><a href="StoreOffers.html" style="background: #10b981; color: white; border-radius: 8px;">🔥 All Store Offers</a></li>
         </ul>
     </nav>
 
-    <main id="main" class="main">
-        <section class="affiliate-section">
-            <h2 class="section-title">Fashion & Lifestyle Deals</h2>
-            <ul class="links-list">
-                <!-- MYNTRA DEALS -->
-                <li><a href="https://myntr.it/lc2Qacn" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">💰 Best EarnKaro Offers</a></li>
-                <li><a href="https://myntr.it/Xw11l7B" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">👗 Myntra Hot Trends</a></li>
-                <li><a href="https://myntr.it/iq4lWIF" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">✨ Myntra Special Deal 1</a></li>
-                <li><a href="https://myntr.it/zNujv1V" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">✨ Myntra Special Deal 2</a></li>
+    <main class="main">
+        <h2 class="section-title">🧸 Curated Kids & Lifestyle Collections</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div>
+                    <div class="product-emoji">🧸</div>
+                    <h3>Premium Kids Toys</h3>
+                    <p>Educational blocks, action figures, and amazing puzzle sets with warehouse direct pricing.</p>
+                </div>
+                <a href="https://nikolatoy.com" class="buy-btn" target="_blank" rel="noopener noreferrer">Shop NikolaToy</a>
+            </div>
+            
+            <div class="product-card">
+                <div>
+                    <div class="product-emoji">🎒</div>
+                    <h3>Kids Apparel & Accessories</h3>
+                    <p>Comfortable organic fabrics, cute outfits, school accessories and adorable backpacks.</p>
+                </div>
+                <a href="https://nikolatoy.com" class="buy-btn" target="_blank" rel="noopener noreferrer">Explore Kids Clothes</a>
+            </div>
 
-                <!-- AJIO DEALS -->
-                <li><a href="https://ajiio.in/A6R4ac6" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">🛍️ Ajio Premium Offers</a></li>
-                <li><a href="https://ajiio.in/Fpj3niG" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">👕 Ajio Fashion Deals</a></li>
-                <li><a href="https://ajiio.in/31FAfnF" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">👟 Ajio Trendy Collection</a></li>
-
-                <!-- FLIPKART DEALS -->
-                <li><a href="https://fktr.in/HhQbd65" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">🛍️ Flipkart Super Deal 1</a></li>
-                <li><a href="https://fktr.in/XRAn1q1" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">🛍️ Flipkart Super Deal 2</a></li>
-
-                <!-- OTHER BITLI FASHION DEALS -->
-                <li><a href="https://bitli.in/ECUfnvo" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">⚡ Special Discount 1</a></li>
-                <li><a href="https://bitli.in/kk4kqbD" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">🔥 Special Discount 2</a></li>
-                <li><a href="https://bitli.in/0uWlzCr" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">✨ Special Discount 3</a></li>
-                <li><a href="https://bitli.in/kpHx9qk" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">💥 Mega Saving Link 4</a></li>
-                <li><a href="https://bitli.in/NxZ3H2A" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">💥 Mega Saving Link 5</a></li>
-                <li><a href="https://bitli.in/Rc1y39v" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">💥 Mega Saving Link 6</a></li>
-                <li><a href="https://bitli.in/5eRYTnA" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">💥 Mega Saving Link 7</a></li>
-                <li><a href="https://bitli.in/pNwOuuy" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">💥 Mega Saving Link 8</a></li>
-                <li><a href="https://bitli.in/cAHyNg6" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">💎 Premium Discount 9</a></li>
-                <li><a href="https://bitli.in/Fgklok9" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">💎 Premium Discount 10</a></li>
-                <li><a href="https://bitli.in/CfqiYSH" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">💎 Premium Discount 11</a></li>
-                <li><a href="https://bitli.in/1DcLt5c" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">💎 Premium Discount 12</a></li>
-                <li><a href="https://bitli.in/dt2lDyt" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">🎁 Surprise Deal 13</a></li>
-                <li><a href="https://bitli.in/9pfB24b" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">🎁 Surprise Deal 14</a></li>
-                <li><a href="https://bitli.in/19tkz1h" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">🎁 Surprise Deal 15</a></li>
-                <li><a href="https://bitli.in/8cV2904" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">🎁 Surprise Deal 16</a></li>
-                <li><a href="https://bitli.in/zPSDr8X" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">🌟 Star Offer 17</a></li>
-                <li><a href="https://bitli.in/LiCq1Xj" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">🌟 Star Offer 18</a></li>
-                <li><a href="https://bitli.in/bEnOUm9" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">🌟 Star Offer 19</a></li>
-                <li><a href="https://bitli.in/buh79dl" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">🚀 Loot Deal 20</a></li>
-                <li><a href="https://bitli.in/xa9QN3X" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">🚀 Loot Deal 21</a></li>
-                <li><a href="https://bitli.in/f8Xput4" class="earnkaro-btn" target="_blank" rel="noopener noreferrer">🚀 Loot Deal 22</a></li>
-            </ul>
-        </section>
+            <div class="product-card">
+                <div>
+                    <div class="product-emoji">🎁</div>
+                    <h3>Unique Birthday Gifts</h3>
+                    <p>Handpicked custom gifting sets and surprise toy items that children absolutely love.</p>
+                </div>
+                <a href="https://nikolatoy.com" class="buy-btn" target="_blank" rel="noopener noreferrer">View Gift Items</a>
+            </div>
+        </div>
     </main>
 
-    <footer style="text-align: center; padding: 20px; color: #6b7280; font-size: 0.9rem;">
+    <footer style="text-align: center; padding: 25px; color: #6b7280; font-size: 0.9rem; margin-top: 40px; border-top: 1px solid #e5e7eb;">
         &copy; SN Deals. All rights reserved.
     </footer>
 </body>
 </html>
-
