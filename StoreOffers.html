@@ -5,43 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SN Deals | Store Offers & Loot Deals</title>
     <style>
-        body{font-family:'Segoe UI',Arial,sans-serif;margin:0;background:#f6f7fb;color:#1f2937}
+        body{font-family:'Segoe UI',Arial,sans-serif;margin:0;background:#eaeded;color:#1f2937}
+        
+        /* Premium Header Styling */
         .site-header{background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:30px 16px;text-align:center;box-shadow:0 4px 15px rgba(16,185,129,0.15)}
         .site-header h1 { margin: 0; font-size: 2.4rem; font-weight: 800; }
         .site-header p { margin: 8px 0 0 0; opacity: 0.95; font-size: 1.1rem; }
+        
+        /* Sticky Navigation */
         .site-nav{background:#0f172a;padding:.75rem 1rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
         .nav-list{list-style:none;margin:0;padding:0;display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
         .nav-list a{display:inline-block;text-decoration:none;color:#fff;padding:.6rem .95rem;border-radius:.55rem;font-weight: 600;font-size:0.95rem;transition:all 0.2s;}
         .nav-list a:hover{background:rgba(255,255,255,.16)}
         .nav-list a[aria-current="page"]{background:#fff;color:#0f172a;font-weight:700}
         
-        .main{max-width:1200px;margin:0 auto;padding:40px 16px 50px}
-        .section-title { color: #0f172a; font-size: 1.6rem; margin: 40px 0 20px; font-weight: 700; border-left: 5px solid #10b981; padding-left: 12px; }
+        .main{max-width:1400px;margin:0 auto;padding:20px 16px 50px}
+        
+        /* --- 1. NEW LIVE BANNER SLIDER --- */
+        .slider-container { width: 100%; height: 320px; position: relative; overflow: hidden; background: #eaeded; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .slides { display: flex; width: 300%; height: 100%; transition: transform 0.5s ease-in-out; }
+        .slide { width: 33.333%; height: 100%; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        .slider-container::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60px; background: linear-gradient(to bottom, transparent, #eaeded); pointer-events: none; }
+        .arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 2rem; color: #111; background: rgba(255, 255, 255, 0.7); border: none; cursor: pointer; padding: 10px 15px; z-index: 10; font-weight: bold; border-radius: 4px; }
+        .prev-arrow { left: 10px; }
+        .next-arrow { right: 10px; }
+
+        /* Titles and Grids */
+        .section-title { color: #0f172a; font-size: 1.6rem; margin: 35px 0 20px; font-weight: 700; border-left: 5px solid #10b981; padding-left: 12px; }
         .section-title.first { margin-top: 10px; }
         
+        /* --- 2. UPGRADED AMAZON STYLE DEALS GRID --- */
         .deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
-        .deal-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 22px; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; justify-content: space-between; height: 160px; text-align: center; }
-        .deal-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); border-color: #10b981; }
         
-        .tag { position: absolute; top: 12px; right: 12px; font-size: 0.75rem; font-weight: 800; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; }
+        .deal-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 15px; position: relative; box-shadow: 0 2px 5px rgba(0,0,0,0.03); transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; justify-content: space-between; min-height: 330px; box-sizing: border-box; }
+        .deal-card:hover { transform: translateY(-4px); box-shadow: 0 6px 15px rgba(0,0,0,0.08); border-color: #10b981; }
+        
+        /* Image Box inside Cards */
+        .card-img-box { width: 100%; height: 160px; background: #fff; overflow: hidden; display: flex; align-items: center; justify-content: center; border-radius: 6px; margin-bottom: 10px; position: relative; border: 1px solid #f3f4f6; }
+        .card-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        
+        /* Discount Tags & Badges */
+        .tag { position: absolute; top: 8px; left: 8px; font-size: 0.7rem; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .tag.flipkart { background: #fee2e2; color: #dc2626; }
-        .tag.myntra { background: #ffe4e6; color: #e11d48; }
-        .tag.ajio { background: #e0f2fe; color: #0284c7; }
-        .tag.meesho { background: #fce7f3; color: #db2777; }
-        .tag.mall { background: #fef3c7; color: #b45309; }
+        .tag.myntra { background: #cc0c39; color: #fff; } /* Amazon Type Red Tag */
+        .tag.ajio { background: #0284c7; color: #fff; }
+        .tag.meesho { background: #db2777; color: #fff; }
+        .tag.mall { background: #b45309; color: #fff; }
         
-        .brand-emoji { font-size: 2rem; margin-bottom: 5px; }
-        .deal-card h3 { margin: 5px 0; color: #0f172a; font-size: 1.1rem; font-weight: 700; }
-        .deal-card p { color: #6b7280; font-size: 0.85rem; margin: 0 0 15px 0; line-height: 1.4; }
+        .deal-card h3 { margin: 8px 0 4px; color: #0f172a; font-size: 0.95rem; font-weight: 700; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .deal-card p { color: #6b7280; font-size: 0.8rem; margin: 0 0 10px 0; line-height: 1.4; text-align: left; }
         
-        .deal-btn { display: block; text-align: center; padding: 10px; background: #0f172a; color: white; text-decoration: none; border-radius: 8px; font-size: 0.9rem; font-weight: 700; transition: background 0.2s; }
+        /* Pricing Section */
+        .price-container { display: flex; gap: 6px; align-items: center; margin-bottom: 12px; font-size: 0.95rem; justify-content: flex-start; width: 100%; }
+        .deal-price { color: #cc0c39; font-weight: 700; font-size: 1.1rem; }
+        .old-price { color: #6b7280; text-decoration: line-through; font-size: 0.8rem; }
+        .discount-percent { color: #38a169; font-weight: 700; font-size: 0.85rem; }
+
+        .deal-btn { display: block; text-align: center; padding: 9px; background: #0f172a; color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: 700; transition: background 0.2s; }
         .deal-btn:hover { background: #10b981; }
         
+        /* Mobile Specific UI */
         @media (max-width:640px){
-            .nav-list a{width:100%;text-align:center}
-            .deals-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .deal-card { padding: 15px; height: 150px; }
-            .deal-card h3 { font-size: 0.95rem; }
+            .slider-container { height: 160px; margin-bottom: 10px; }
+            .deals-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .deal-card { padding: 10px; min-height: 270px; }
+            .card-img-box { height: 110px; margin-bottom: 6px; }
+            .deal-card h3 { font-size: 0.85rem; margin: 4px 0 2px; }
+            .deal-card p { display: none; } /* Mobile par description hide hoga space bachane k liye */
+            .deal-price { font-size: 0.95rem; }
+            .old-price, .discount-percent { font-size: 0.7rem; }
+            .price-container { margin-bottom: 8px; gap: 4px; }
+            .deal-btn { padding: 7px; font-size: 0.8rem; }
+            .tag { font-size: 0.6rem; padding: 2px 5px; }
         }
     </style>
 </head>
@@ -57,87 +93,227 @@
             <li><a href="Mobiles.html">Amazon</a></li>
             <li><a href="Electronics.html">MaviGadget</a></li>
             <li><a href="NikolaToy.html">🧸 NikolaToy</a></li>
-            <li><a href="StoreOffers.html" aria-current="page" style="background: #ffffff; color: #0f172a; border-radius: 8px;">🔥 All Store Offers</a></li>
+            <li><a href="StoreOffers.html" aria-current="page">🔥 All Store Offers</a></li>
         </ul>
     </nav>
     
     <main class="main">
+
+        <!-- --- 1. DYNAMIC BANNER SLIDER --- -->
+        <div class="slider-container">
+            <button class="arrow prev-arrow" onclick="moveSlide(-1)">❮</button>
+            <div class="slides" id="slider">
+                <div class="slide"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200" alt="Sale 1"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200" alt="Sale 2"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=1200" alt="Sale 3"></div>
+            </div>
+            <button class="arrow next-arrow" onclick="moveSlide(1)">❯</button>
+        </div>
+
+        <!-- --- 2. MAIN MEGA STORES SECTION --- -->
         <h2 class="section-title first">🎁 Main Mega Stores</h2>
         <div class="deals-grid">
             <!-- Flipkart -->
             <div class="deal-card">
-                <span class="tag flipkart">Up to 80% Off</span>
-                <div class="brand-emoji">🛍️</div>
+                <div class="card-img-box">
+                    <span class="tag flipkart">80% Off Banner</span>
+                    <img src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=250" alt="Flipkart">
+                </div>
                 <h3>Flipkart Mega Store</h3>
-                <p>Shop electronic gadgets and home appliances.</p>
+                <p>Shop electronic gadgets & appliances.</p>
+                <div class="price-container"><span class="deal-price">Loot Deals</span></div>
                 <a href="https://fktr.in/HhQbd65" class="deal-btn" target="_blank" rel="noopener noreferrer">Unlock Deal</a>
             </div>
             <!-- Myntra Main -->
             <div class="deal-card">
-                <span class="tag myntra">Min 60% Off</span>
-                <div class="brand-emoji">👗</div>
+                <div class="card-img-box">
+                    <span class="tag myntra">Min 60% Off</span>
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=250" alt="Myntra">
+                </div>
                 <h3>Myntra Main Store</h3>
-                <p>Premium fashion and cosmetic collections.</p>
+                <p>Premium fashion & cosmetic collections.</p>
+                <div class="price-container"><span class="deal-price">Top Brands</span></div>
                 <a href="https://myntr.it/lc2Qacn" class="deal-btn" target="_blank" rel="noopener noreferrer">Unlock Deal</a>
             </div>
             <!-- Ajio Main -->
             <div class="deal-card">
-                <span class="tag ajio">Up to 70% Off</span>
-                <div class="brand-emoji">👕</div>
+                <div class="card-img-box">
+                    <span class="tag ajio">Up to 70% Off</span>
+                    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=250" alt="Ajio">
+                </div>
                 <h3>Ajio Main Store</h3>
                 <p>Trending daily streetwear and brands.</p>
+                <div class="price-container"><span class="deal-price">Best Coupon</span></div>
                 <a href="https://ajio.in/A6R4ac6" class="deal-btn" target="_blank" rel="noopener noreferrer">Unlock Deal</a>
             </div>
             <!-- Hamara Mall -->
             <div class="deal-card">
-                <span class="tag mall">Special Loot</span>
-                <div class="brand-emoji">🏬</div>
+                <div class="card-img-box">
+                    <span class="tag mall">Special Loot</span>
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=250" alt="Mall">
+                </div>
                 <h3>Hamara Mall Deals</h3>
-                <p>Access exclusive local and viral viral products.</p>
+                <p>Access exclusive local and viral products.</p>
+                <div class="price-container"><span class="deal-price">Viral Deals</span></div>
                 <a href="https://bitli.in/ECUfnvo" class="deal-btn" target="_blank" rel="noopener noreferrer">Shop Now</a>
             </div>
             <!-- Meesho -->
             <div class="deal-card">
-                <span class="tag meesho">Loot Price</span>
-                <div class="brand-emoji">💖</div>
+                <div class="card-img-box">
+                    <span class="tag meesho">Lowest Price</span>
+                    <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=250" alt="Meesho">
+                </div>
                 <h3>Meesho Store Offers</h3>
                 <p>Unbeatable factory prices on clothing.</p>
+                <div class="price-container"><span class="deal-price">₹99 Store</span></div>
                 <a href="https://bitli.in/kk4kqbD" class="deal-btn" target="_blank" rel="noopener noreferrer">Unlock Deal</a>
             </div>
         </div>
 
-        <!-- MYNTRA SPECIFIC DEALS -->
+        <!-- --- 3. MYNTRA LIVE OFFERS SECTION --- -->
         <h2 class="section-title">🛍️ Myntra Live Offers</h2>
         <div class="deals-grid">
-            <div class="deal-card"><span class="tag myntra">Myntra</span><h3>Trending Wear 1</h3><a href="https://myntr.it/u1u5yNj" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag myntra">Myntra</span><h3>Fashion Deal 2</h3><a href="https://myntr.it/jdCvisD" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag myntra">Myntra</span><h3>Premium Wear 3</h3><a href="https://myntr.it/0LGj1hr" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag myntra">Myntra</span><h3>Style Special 4</h3><a href="https://myntr.it/4M7Wbwp" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag myntra">Myntra</span><h3>Exclusive Deal 5</h3><a href="https://myntr.it/8nPNxSw" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag myntra">Myntra</span><h3>Best Seller 6</h3><a href="https://myntr.it/66oWTo8" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag myntra">Myntra</span><h3>Latest Fashion 7</h3><a href="https://myntr.it/B62vExC" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag myntra">Myntra</span><h3>Super Discount 8</h3><a href="https://myntr.it/JRr6pJv" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag myntra">75% OFF</span><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=250" alt="M1"></div>
+                <h3>Trending Wear 1</h3><p>Casual modern outfit wear.</p>
+                <div class="price-container"><span class="deal-price">₹499</span><span class="old-price">₹1,999</span><span class="discount-percent">(75% Off)</span></div>
+                <a href="https://myntr.it/u1u5yNj" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag myntra">Loot Deal</span><img src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=250" alt="M2"></div>
+                <h3>Fashion Deal 2</h3><p>Western premium styles.</p>
+                <div class="price-container"><span class="deal-price">₹349</span><span class="old-price">₹1,499</span><span class="discount-percent">(76% Off)</span></div>
+                <a href="https://myntr.it/jdCvisD" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag myntra">60% OFF</span><img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=250" alt="M3"></div>
+                <h3>Premium Wear 3</h3><p>Festive luxury party clothes.</p>
+                <div class="price-container"><span class="deal-price">₹799</span><span class="old-price">₹1,999</span><span class="discount-percent">(60% Off)</span></div>
+                <a href="https://myntr.it/0LGj1hr" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag myntra">Half Price</span><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=250" alt="M4"></div>
+                <h3>Style Special 4</h3><p>Everyday active urban wear.</p>
+                <div class="price-container"><span class="deal-price">₹599</span><span class="old-price">₹1,299</span><span class="discount-percent">(53% Off)</span></div>
+                <a href="https://myntr.it/4M7Wbwp" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag myntra">80% OFF</span><img src="https://images.unsplash.com/photo-1609505848912-b7c3b8b4beda?w=250" alt="M5"></div>
+                <h3>Exclusive Deal 5</h3><p>Designer special pick trends.</p>
+                <div class="price-container"><span class="deal-price">₹399</span><span class="old-price">₹1,999</span><span class="discount-percent">(80% Off)</span></div>
+                <a href="https://myntr.it/8nPNxSw" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag myntra">Bestseller</span><img src="https://images.unsplash.com/photo-1539185441755-769473a23570?w=250" alt="M6"></div>
+                <h3>Best Seller 6</h3><p>Most demanded trending choice.</p>
+                <div class="price-container"><span class="deal-price">₹649</span><span class="old-price">₹1,499</span><span class="discount-percent">(56% Off)</span></div>
+                <a href="https://myntr.it/66oWTo8" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag myntra">New Launch</span><img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=250" alt="M7"></div>
+                <h3>Latest Fashion 7</h3><p>Fresh catalog collection designs.</p>
+                <div class="price-container"><span class="deal-price">₹449</span><span class="old-price">₹1,199</span><span class="discount-percent">(62% Off)</span></div>
+                <a href="https://myntr.it/B62vExC" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag myntra">Mega Cut</span><img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=250" alt="M8"></div>
+                <h3>Super Discount 8</h3><p>Stock clearance markdown offer.</p>
+                <div class="price-container"><span class="deal-price">₹299</span><span class="old-price">₹1,249</span><span class="discount-percent">(76% Off)</span></div>
+                <a href="https://myntr.it/JRr6pJv" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
         </div>
 
-        <!-- AJIO SPECIFIC DEALS -->
+        <!-- --- 4. AJIO SPECIFIC DEALS SECTION --- -->
         <h2 class="section-title">👔 Ajio Hot Trends</h2>
         <div class="deals-grid">
-            <div class="deal-card"><span class="tag ajio">Ajio</span><h3>Trending Wear 1</h3><a href="https://ajiio.in/lLsookW" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag ajio">Ajio</span><h3>Modern Style 2</h3><a href="https://ajiio.in/8N0d6nl" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag ajio">Ajio</span><h3>Classic Fit 3</h3><a href="https://ajiio.in/EtV074w" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag ajio">Ajio</span><h3>Casual Trend 4</h3><a href="https://ajiio.in/QlLqg1w" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag ajio">Ajio</span><h3>Hot Choice 5</h3><a href="https://ajiio.in/xtwrj61" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag ajio">Ajio</span><h3>New Arrivals 6</h3><a href="https://ajiio.in/KHO7Ubi" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag ajio">Ajio</span><h3>Smart Casuals 7</h3><a href="https://ajiio.in/K5zBtGz" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag ajio">Ajio</span><h3>Premium Collection 8</h3><a href="https://ajiio.in/Mwf8i4e" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag ajio">Ajio</span><h3>Super Saver 9</h3><a href="https://ajiio.in/dkNJXb9" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag ajio">Ajio</span><h3>Popular Style 10</h3><a href="https://ajiio.in/TZx89Uv" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
-            <div class="deal-card"><span class="tag ajio">Ajio</span><h3>Ethnic & Modern 11</h3><a href="https://ajiio.in/xNn7t00" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a></div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag ajio">70% OFF</span><img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=250" alt="A1"></div>
+                <h3>Trending Wear 1</h3>
+                <div class="price-container"><span class="deal-price">₹599</span><span class="old-price">₹1,999</span><span class="discount-percent">(70% Off)</span></div>
+                <a href="https://ajiio.in/lLsookW" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag ajio">Flat 80%</span><img src="https://images.unsplash.com/photo-1618886614638-80e3c103d31a?w=250" alt="A2"></div>
+                <h3>Modern Style 2</h3>
+                <div class="price-container"><span class="deal-price">₹399</span><span class="old-price">₹1,999</span><span class="discount-percent">(80% Off)</span></div>
+                <a href="https://ajiio.in/8N0d6nl" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag ajio">Loot Price</span><img src="https://images.unsplash.com/photo-1505632951740-362ab9b5c88a?w=250" alt="A3"></div>
+                <h3>Classic Fit 3</h3>
+                <div class="price-container"><span class="deal-price">₹699</span><span class="old-price">₹2,499</span><span class="discount-percent">(72% Off)</span></div>
+                <a href="https://ajiio.in/EtV074w" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag ajio">65% OFF</span><img src="https://images.unsplash.com/photo-1520367745676-56196632073f?w=250" alt="A4"></div>
+                <h3>Casual Trend 4</h3>
+                <div class="price-container"><span class="deal-price">₹449</span><span class="old-price">₹1,299</span><span class="discount-percent">(65% Off)</span></div>
+                <a href="https://ajiio.in/QlLqg1w" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag ajio">Hot Deal</span><img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=250" alt="A5"></div>
+                <h3>Hot Choice 5</h3>
+                <div class="price-container"><span class="deal-price">₹499</span><span class="old-price">₹1,699</span><span class="discount-percent">(70% Off)</span></div>
+                <a href="https://ajiio.in/xtwrj61" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag ajio">New In</span><img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=250" alt="A6"></div>
+                <h3>New Arrivals 6</h3>
+                <div class="price-container"><span class="deal-price">₹549</span><span class="old-price">₹1,499</span><span class="discount-percent">(63% Off)</span></div>
+                <a href="https://ajiio.in/KHO7Ubi" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag ajio">Smart Buy</span><img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=250" alt="A7"></div>
+                <h3>Smart Casuals 7</h3>
+                <div class="price-container"><span class="deal-price">₹519</span><span class="old-price">₹1,299</span><span class="discount-percent">(60% Off)</span></div>
+                <a href="https://ajiio.in/K5zBtGz" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag ajio">Premium</span><img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=250" alt="A8"></div>
+                <h3>Premium Collection 8</h3>
+                <div class="price-container"><span class="deal-price">₹899</span><span class="old-price">₹2,999</span><span class="discount-percent">(70% Off)</span></div>
+                <a href="https://ajiio.in/Mwf8i4e" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag ajio">Super Saver</span><img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=250" alt="A9"></div>
+                <h3>Super Saver 9</h3>
+                <div class="price-container"><span class="deal-price">₹379</span><span class="old-price">₹1,499</span><span class="discount-percent">(74% Off)</span></div>
+                <a href="https://ajiio.in/dkNJXb9" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag ajio">Popular</span><img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=250" alt="A10"></div>
+                <h3>Popular Style 10</h3>
+                <div class="price-container"><span class="deal-price">₹429</span><span class="old-price">₹1,199</span><span class="discount-percent">(64% Off)</span></div>
+                <a href="https://ajiio.in/TZx89Uv" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
+            <div class="deal-card">
+                <div class="card-img-box"><span class="tag ajio">Ethnic</span><img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=250" alt="A11"></div>
+                <h3>Ethnic & Modern 11</h3>
+                <div class="price-container"><span class="deal-price">₹699</span><span class="old-price">₹2,199</span><span class="discount-percent">(68% Off)</span></div>
+                <a href="https://ajiio.in/xNn7t00" class="deal-btn" target="_blank" rel="noopener noreferrer">Grab Deal</a>
+            </div>
         </div>
     </main>
 
-    <footer style="text-align: center; padding: 25px; color: #6b7280; font-size: 0.9rem; margin-top: 50px;">
+    <footer style="text-align: center; padding: 25px; color: #6b7280; font-size: 0.9rem; margin-top: 50px; background:#fff; border-top:1px solid #e5e7eb;">
         &copy; SN Deals. All rights reserved.
     </footer>
+
+    <!-- Slider Javascript logic -->
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 3;
+        const slider = document.getElementById('slider');
+
+        function moveSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            slider.style.transform = `translateX(-${currentSlide * 33.333}%)`;
+        }
+
+        // Auto slide change in 4 seconds
+        setInterval(() => {
+            moveSlide(1);
+        }, 4000);
+    </script>
 </body>
 </html>
