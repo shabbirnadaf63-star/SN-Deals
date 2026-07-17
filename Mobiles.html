@@ -16,61 +16,62 @@
         .brand-header { background: #232f3e; color: #fff; padding: 15px 20px; text-align: center; }
         .brand-header h1 { margin: 0; font-size: 1.6rem; color: #febd69; }
 
-        /* Main Grid with Sidebar Cart */
-        .main-container { max-width: 1500px; margin: 20px auto; padding: 0 20px; display: flex; gap: 20px; }
-        .content-area { flex: 4; }
-        .cart-sidebar { flex: 1; background: #fff; padding: 15px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); height: fit-content; position: sticky; top: 80px; }
+        /* Main Container Layout */
+        .main-container { max-width: 1400px; margin: 20px auto; padding: 0 15px; display: flex; gap: 20px; }
+        .content-area { flex: 3; }
+        .cart-sidebar { flex: 1; background: #fff; padding: 15px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); height: fit-content; position: sticky; top: 80px; }
 
-        /* Section Title */
         .section-title { background: #fff; padding: 15px 20px; margin-bottom: 15px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 5px solid #e47911; font-size: 1.25rem; font-weight: 700; }
 
-        /* Products Auto-Grid */
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+        /* Products Grid */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
-        /* Product Card style */
-        .product-card { background: #fff; border-radius: 4px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: relative; }
-        .badge { position: absolute; top: 10px; left: 10px; background: #cc0c39; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border-radius: 2px; }
-        .product-img-box { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; background: #f9f9f9; border-radius: 4px; }
-        .product-img-box img { max-width: 90%; max-height: 90%; object-fit: contain; mix-blend-mode: multiply; }
+        /* Product Card Styles */
+        .product-card { background: #fff; border-radius: 6px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 2px 4px rgba(0,0,0,0.08); position: relative; border: 1px solid #ddd; }
+        .badge { position: absolute; top: 10px; left: 10px; background: #cc0c39; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border-radius: 2px; z-index: 5; }
         
-        .product-name { font-size: 0.9rem; font-weight: 600; line-height: 1.3; height: 36px; overflow: hidden; margin-bottom: 8px; color: #111; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-        .stars { color: #ffa41c; font-size: 0.8rem; margin-bottom: 8px; }
+        /* Managed Image Box with fallback helper */
+        .product-img-box { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; background: #f7f7f7; border-radius: 4px; overflow: hidden; }
+        .product-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+        
+        .product-name { font-size: 0.95rem; font-weight: 600; line-height: 1.4; height: 40px; overflow: hidden; margin-bottom: 8px; color: #0f1111; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .stars { color: #ffa41c; font-size: 0.85rem; margin-bottom: 8px; }
         
         .price-box { margin-bottom: 12px; }
         .price-main { display: flex; align-items: baseline; gap: 6px; }
-        .curr-price { font-size: 1.3rem; font-weight: 700; color: #111; }
-        .disc-percent { color: #cc0c39; font-weight: 700; font-size: 0.9rem; }
-        .mrp { color: #565959; text-decoration: line-through; font-size: 0.8rem; }
+        .curr-price { font-size: 1.4rem; font-weight: 700; color: #111; }
+        .disc-percent { color: #cc0c39; font-weight: 700; font-size: 1rem; }
+        .mrp { color: #565959; text-decoration: line-through; font-size: 0.85rem; }
 
-        /* Actions Row */
+        /* Buttons layout */
         .action-btns { display: flex; flex-direction: column; gap: 8px; }
-        .btn { display: block; text-align: center; padding: 8px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600; border: 1px solid; cursor: pointer; transition: 0.2s; }
+        .btn { display: block; text-align: center; padding: 10px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600; border: 1px solid; cursor: pointer; transition: 0.2s; }
         .btn-cart { background: #fad14b; border-color: #a88734; color: #111; }
         .btn-cart:hover { background: #f7c521; }
         .btn-buy { background: #e47911; border-color: #944d06; color: #fff; }
         .btn-buy:hover { background: #d06d0b; }
 
-        /* Cart List Style */
-        .cart-title { font-size: 1.1rem; font-weight: 700; margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 10px; display: flex; justify-content: space-between; }
-        .cart-items { list-style: none; padding: 0; margin: 10px 0; max-height: 300px; overflow-y: auto; }
+        /* Cart Widgets */
+        .cart-title { font-size: 1.1rem; font-weight: 700; margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .cart-items { list-style: none; padding: 0; margin: 10px 0; max-height: 250px; overflow-y: auto; }
         .cart-item { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed #eee; }
         .cart-total { font-weight: 700; font-size: 1rem; display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid #ddd; }
-        .checkout-btn { display: block; width: 100%; text-align: center; background: #e47911; color: #fff; border: none; padding: 10px; margin-top: 15px; font-weight: bold; border-radius: 4px; cursor: pointer; }
+        .checkout-btn { display: block; width: 100%; text-align: center; background: #e47911; color: #fff; border: none; padding: 12px; margin-top: 15px; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
 
-        /* Mobile View Optimization */
-        @media (max-width: 768px) {
-            .main-container { flex-direction: column; padding: 0 10px; }
-            .cart-sidebar { position: static; order: -1; margin-bottom: 15px; }
-            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .product-card { padding: 10px; }
-            .product-img-box { height: 120px; }
-            .curr-price { font-size: 1.1rem; }
+        /* ADVANCED RESPONSIVE FIXES FOR MOBILE VIEWS */
+        @media (max-width: 992px) {
+            .main-container { flex-direction: column; }
+            .cart-sidebar { position: static; width: auto; margin-bottom: 20px; order: -1; }
+        }
+        @media (max-width: 576px) {
+            .products-grid { grid-template-columns: 1fr; gap: 15px; }
+            .product-card { padding: 12px; }
+            .product-img-box { height: 220px; }
         }
     </style>
 </head>
 <body>
     
-    <!-- Navigation Bar -->
     <nav class="site-nav">
         <ul class="nav-list">
             <li><a href="index.html">Home</a></li>
@@ -86,15 +87,15 @@
 
     <div class="main-container">
         
-        <!-- --- PRODUCTS AUTO LISTING REGION --- -->
+        <!-- --- CONTENT AREA --- -->
         <div class="content-area">
             <div class="section-title">🔥 Live Auto-Listing Discount Offers</div>
             <div class="products-grid" id="auto-products-container">
-                <!-- Javascript will auto-inject listing here -->
+                <!-- Injected via JavaScript -->
             </div>
         </div>
 
-        <!-- --- LIVE SIDEBAR ADD TO CART SYSTEM --- -->
+        <!-- --- CART SIDEBAR --- -->
         <aside class="cart-sidebar">
             <h3 class="cart-title">Your Cart <span id="cart-count" style="background:#cc0c39; color:#fff; padding:2px 8px; border-radius:10px; font-size:0.75rem;">0</span></h3>
             <ul class="cart-items" id="cart-list">
@@ -109,37 +110,33 @@
 
     </div>
 
-    <!-- AUTO LISTING & CART CORE JAVASCRIPT -->
     <script>
-        // Copyright-Free Dynamic Product Pool (Aap yahan naye products add/remove kar sakte hain)
+        // High-Quality Global Dynamic Images Pool (with auto-fallback system)
         const productsData = [
-            { id: 1, name: "Premium 5G Smartphone (8GB/128GB)", mrp: 19999, discount: 15, rating: 4, reviews: "12,450", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300", tag: "Loot Deal", link: "https://www.amazon.in" },
-            { id: 2, name: "Noise Cancelling Wireless Earbuds", mrp: 4499, discount: 60, rating: 5, reviews: "84,110", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300", tag: "Best Seller", link: "https://www.amazon.in" },
-            { id: 3, name: "Ultra Fast 20000mAh Power Bank", mrp: 2499, discount: 30, rating: 4, reviews: "15,200", img: "https://images.unsplash.com/photo-1609592424407-3026844ba9ec?w=300", tag: "Top Pick", link: "https://www.amazon.in" },
-            { id: 4, name: "Smart Fitness Watch with SpO2", mrp: 5999, discount: 55, rating: 4, reviews: "42,900", img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300", tag: "Lightning Deal", link: "https://www.amazon.in" },
-            { id: 5, name: "High-Speed 64GB OTG Flash Drive", mrp: 1300, discount: 58, rating: 5, reviews: "21,150", img: "https://images.unsplash.com/photo-1601524909162-be87252be298?w=300", tag: "Trending", link: "https://www.amazon.in" },
-            { id: 6, name: "Waterproof Portable Bluetooth Speaker", mrp: 3999, discount: 45, rating: 4, reviews: "9,830", img: "https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=300", tag: "Price Drop", link: "https://www.amazon.in" }
+            { id: 1, name: "Premium 5G Smartphone (8GB/128GB)", mrp: 19999, discount: 15, rating: 4, reviews: "12,450", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400", tag: "Loot Deal", link: "https://www.amazon.in" },
+            { id: 2, name: "Noise Cancelling Wireless Earbuds", mrp: 4499, discount: 60, rating: 5, reviews: "84,110", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400", tag: "Best Seller", link: "https://www.amazon.in" },
+            { id: 3, name: "Ultra Fast 20000mAh Power Bank", mrp: 2499, discount: 30, rating: 4, reviews: "15,200", img: "https://images.unsplash.com/photo-1609592424407-3026844ba9ec?w=400", tag: "Top Pick", link: "https://www.amazon.in" },
+            { id: 4, name: "Smart Fitness Watch with SpO2", mrp: 5999, discount: 55, rating: 4, reviews: "42,900", img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400", tag: "Lightning Deal", link: "https://www.amazon.in" },
+            { id: 5, name: "High-Speed 64GB OTG Flash Drive", mrp: 1300, discount: 58, rating: 5, reviews: "21,150", img: "https://images.unsplash.com/photo-1601524909162-be87252be298?w=400", tag: "Trending", link: "https://www.amazon.in" },
+            { id: 6, name: "Waterproof Portable Bluetooth Speaker", mrp: 3999, discount: 45, rating: 4, reviews: "9,830", img: "https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=400", tag: "Price Drop", link: "https://www.amazon.in" }
         ];
 
         let cart = [];
 
-        // 1. Function to Auto-List Products with Calculated Discount Prices
         function autoListProducts() {
             const container = document.getElementById('auto-products-container');
-            container.innerHTML = ""; // Clear content
+            container.innerHTML = ""; 
 
             productsData.forEach(product => {
-                // Discount math calculation
                 const calculatedPrice = Math.round(product.mrp - (product.mrp * (product.discount / 100)));
-                
-                // Star String generator
                 let starString = "★".repeat(product.rating) + "☆".repeat(5 - product.rating);
 
                 const productHTML = `
                     <div class="product-card">
                         <span class="badge">${product.tag}</span>
                         <div class="product-img-box">
-                            <img src="${product.img}" alt="${product.name}">
+                            <!-- added onerror placeholder fixer -->
+                            <img src="${product.img}" alt="${product.name}" onerror="this.onerror=null; this.src='https://placehold.co/400x400/f3f3f3/333333?text=Deal+Item';">
                         </div>
                         <div class="product-name">${product.name}</div>
                         <div class="stars">${starString} <span style="color:#565959; font-size:0.75rem;">(${product.reviews})</span></div>
@@ -160,7 +157,6 @@
             });
         }
 
-        // 2. Add To Cart System Logic
         function addToCart(id, name, price) {
             const existingItem = cart.find(item => item.id === id);
             if (existingItem) {
@@ -171,7 +167,6 @@
             updateCartUI();
         }
 
-        // 3. Update Cart Sidebar View
         function updateCartUI() {
             const cartList = document.getElementById('cart-list');
             const cartCount = document.getElementById('cart-count');
@@ -206,16 +201,14 @@
             cartSubtotal.innerText = "₹" + totalPrice.toLocaleString('en-IN');
         }
 
-        // 4. Checkout Handler
         function checkoutCart() {
             if(cart.length === 0) {
-                alert("Aapka cart khali hai! Kripya pehle products add karein.");
+                alert("Aapka cart khali hai!");
             } else {
-                alert("Redirecting to execution page... Aap in products ko direct Amazon affiliate system se checkout karwa sakte hain.");
+                alert("Redirecting to Amazon Secure Cart system...");
             }
         }
 
-        // Initialize script on load
         window.onload = autoListProducts;
     </script>
 </body>
