@@ -3,96 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amazon Live Deals - Real Tech & Gadget Offers | SN Deals</title>
+    <title>Live Deals Hub - Dynamic Auto Listing | SN Deals</title>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #eaeded; color: #111; }
         
-        /* Navigation Style */
+        /* Navigation & Header */
         .site-nav { background: #131921; padding: 12px 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .nav-list { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-        .nav-list a { display: inline-block; text-decoration: none; color: #fff; padding: 8px 14px; border-radius: 4px; font-weight: 600; font-size: 0.95rem; }
-        .nav-list a:hover { border: 1px solid #fff; padding: 7px 13px; }
-        .nav-list a[aria-current="page"] { background: #febd69; color: #111; font-weight: 700; }
+        .nav-list a { text-decoration: none; color: #fff; padding: 8px 14px; border-radius: 4px; font-weight: 600; font-size: 0.95rem; }
+        .nav-list a[aria-current="page"] { background: #febd69; color: #111; }
         
-        /* Amazon Brand Sub-Header */
-        .brand-header { background: #232f3e; color: #fff; padding: 15px 20px; text-align: center; border-top: 1px solid #3a4553; }
+        .brand-header { background: #232f3e; color: #fff; padding: 15px 20px; text-align: center; }
         .brand-header h1 { margin: 0; font-size: 1.6rem; color: #febd69; }
-        .brand-header p { margin: 5px 0 0; font-size: 0.9rem; color: #ccc; }
 
-        .main { max-width: 1500px; margin: 0 auto; padding: 0 0 50px; position: relative; }
+        /* Main Grid with Sidebar Cart */
+        .main-container { max-width: 1500px; margin: 20px auto; padding: 0 20px; display: flex; gap: 20px; }
+        .content-area { flex: 4; }
+        .cart-sidebar { flex: 1; background: #fff; padding: 15px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); height: fit-content; position: sticky; top: 80px; }
 
-        /* --- 1. BANNER SLIDER --- */
-        .slider-container { width: 100%; height: 350px; position: relative; overflow: hidden; background: #eaeded; }
-        .slides { display: flex; width: 300%; height: 100%; transition: transform 0.5s ease-in-out; }
-        .slide { width: 33.333%; height: 100%; position: relative; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; }
-        
-        /* Slider Shadow Overlay */
-        .slider-container::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 120px; background: linear-gradient(to bottom, transparent, #eaeded); pointer-events: none; }
-        
-        /* Slider Arrows */
-        .arrow { position: absolute; top: 40%; transform: translateY(-50%); font-size: 2.5rem; color: #333; background: rgba(255, 255, 255, 0.6); border: none; cursor: pointer; padding: 15px; z-index: 10; font-weight: bold; border-radius: 4px; }
-        .arrow:focus { outline: none; }
-        .prev-arrow { left: 10px; }
-        .next-arrow { right: 10px; }
+        /* Section Title */
+        .section-title { background: #fff; padding: 15px 20px; margin-bottom: 15px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 5px solid #e47911; font-size: 1.25rem; font-weight: 700; }
 
-        /* --- 2. DEALS SECTION --- */
-        .deals-section { padding: 0 20px; margin-top: -80px; position: relative; z-index: 5; }
-        .section-title { background: #fff; padding: 15px 20px; margin-top: 30px; margin-bottom: 15px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 5px solid #e47911; font-size: 1.25rem; font-weight: 700; }
-
-        /* Product Grid */
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+        /* Products Auto-Grid */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
         
-        /* Product Card */
-        .product-card { background: #fff; border-radius: 4px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: relative; transition: transform 0.2s; }
-        .product-card:hover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+        /* Product Card style */
+        .product-card { background: #fff; border-radius: 4px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: relative; }
+        .badge { position: absolute; top: 10px; left: 10px; background: #cc0c39; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border-radius: 2px; }
+        .product-img-box { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; background: #f9f9f9; border-radius: 4px; }
+        .product-img-box img { max-width: 90%; max-height: 90%; object-fit: contain; mix-blend-mode: multiply; }
         
-        /* Ribbon/Badge */
-        .badge { position: absolute; top: 10px; left: 10px; background: #cc0c39; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border-radius: 2px; z-index: 2; }
-        .badge.blue-badge { background: #007185; }
-
-        /* Product Image */
-        .product-img-box { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; background: #fff; margin-bottom: 12px; }
-        .product-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
-        /* Product Details */
-        .product-info { flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .product-name { font-size: 0.95rem; font-weight: 600; line-height: 1.3; height: 40px; overflow: hidden; margin-bottom: 8px; color: #111; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .product-name { font-size: 0.9rem; font-weight: 600; line-height: 1.3; height: 36px; overflow: hidden; margin-bottom: 8px; color: #111; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .stars { color: #ffa41c; font-size: 0.8rem; margin-bottom: 8px; }
         
-        /* Ratings */
-        .stars { color: #ffa41c; font-size: 0.85rem; margin-bottom: 8px; }
-        
-        /* Pricing */
         .price-box { margin-bottom: 12px; }
         .price-main { display: flex; align-items: baseline; gap: 6px; }
-        .curr-price { font-size: 1.4rem; font-weight: 700; color: #111; }
-        .disc-percent { color: #cc0c39; font-weight: 700; font-size: 0.95rem; }
-        .mrp { color: #565959; text-decoration: line-through; font-size: 0.85rem; margin-top: 2px; display: block; }
+        .curr-price { font-size: 1.3rem; font-weight: 700; color: #111; }
+        .disc-percent { color: #cc0c39; font-weight: 700; font-size: 0.9rem; }
+        .mrp { color: #565959; text-decoration: line-through; font-size: 0.8rem; }
 
-        /* CTA Button */
-        .buy-btn { display: block; text-align: center; background: linear-gradient(to bottom, #f7dfa5, #f0c14b); border: 1px solid #a88734; color: #111; padding: 10px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: background 0.2s; }
-        .buy-btn:hover { background: linear-gradient(to bottom, #f5d78e, #eeb933); border-color: #846a29; }
+        /* Actions Row */
+        .action-btns { display: flex; flex-direction: column; gap: 8px; }
+        .btn { display: block; text-align: center; padding: 8px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600; border: 1px solid; cursor: pointer; transition: 0.2s; }
+        .btn-cart { background: #fad14b; border-color: #a88734; color: #111; }
+        .btn-cart:hover { background: #f7c521; }
+        .btn-buy { background: #e47911; border-color: #944d06; color: #fff; }
+        .btn-buy:hover { background: #d06d0b; }
 
-        /* Footer */
-        footer { background: #131921; color: #ddd; text-align: center; padding: 25px; margin-top: 50px; font-size: 0.85rem; border-top: 1px solid #3a4553; }
+        /* Cart List Style */
+        .cart-title { font-size: 1.1rem; font-weight: 700; margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 10px; display: flex; justify-content: space-between; }
+        .cart-items { list-style: none; padding: 0; margin: 10px 0; max-height: 300px; overflow-y: auto; }
+        .cart-item { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed #eee; }
+        .cart-total { font-weight: 700; font-size: 1rem; display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid #ddd; }
+        .checkout-btn { display: block; width: 100%; text-align: center; background: #e47911; color: #fff; border: none; padding: 10px; margin-top: 15px; font-weight: bold; border-radius: 4px; cursor: pointer; }
 
         /* Mobile View Optimization */
         @media (max-width: 768px) {
-            .brand-header { padding: 10px; }
-            .brand-header h1 { font-size: 1.3rem; }
-            .slider-container { height: 180px; }
-            .slider-container::after { height: 50px; }
-            .deals-section { margin-top: -10px; padding: 0 10px; }
-            .section-title { font-size: 1rem; padding: 10px; margin-top: 20px; margin-bottom: 10px; }
+            .main-container { flex-direction: column; padding: 0 10px; }
+            .cart-sidebar { position: static; order: -1; margin-bottom: 15px; }
             .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .product-card { padding: 10px; }
             .product-img-box { height: 120px; }
-            .product-name { font-size: 0.8rem; height: 32px; }
             .curr-price { font-size: 1.1rem; }
-            .disc-percent { font-size: 0.8rem; }
-            .mrp { font-size: 0.75rem; }
-            .buy-btn { padding: 7px; font-size: 0.8rem; }
-            .arrow { display: none; }
         }
     </style>
 </head>
@@ -105,386 +77,146 @@
             <li><a href="Mobiles.html" aria-current="page">Amazon</a></li>
             <li><a href="Electronics.html">MaviGadget</a></li>
             <li><a href="NikolaToy.html">🧸 NikolaToy</a></li>
-            <li><a href="StoreOffers.html" style="background: #febd69; color: #111; border-radius: 4px;">🔥 All Store Offers</a></li>
         </ul>
     </nav>
 
-    <!-- Amazon Subheader -->
     <header class="brand-header">
-        <h1>Amazon India Live Loot Deals</h1>
-        <p>Handpicked real-time price drops and best seller electronic offers</p>
+        <h1>Live Mega Deals Dashboard</h1>
     </header>
 
-    <main class="main">
+    <div class="main-container">
         
-        <!-- --- 1. BANNER SLIDER --- -->
-        <div class="slider-container">
-            <button class="arrow prev-arrow" onclick="moveSlide(-1)">❮</button>
-            <div class="slides" id="slider">
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200&auto=format&fit=crop" alt="Big Amazon Sale Banner">
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=1200&auto=format&fit=crop" alt="Smartwatch Special Offers">
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&auto=format&fit=crop" alt="Electronics Store Banner">
-                </div>
+        <!-- --- PRODUCTS AUTO LISTING REGION --- -->
+        <div class="content-area">
+            <div class="section-title">🔥 Live Auto-Listing Discount Offers</div>
+            <div class="products-grid" id="auto-products-container">
+                <!-- Javascript will auto-inject listing here -->
             </div>
-            <button class="arrow next-arrow" onclick="moveSlide(1)">❯</button>
         </div>
 
-        <!-- --- 2. AMAZON OFFERS LIST --- -->
-        <section class="deals-section">
-            
-            <!-- Category 1: Real Smartphones & Accessories -->
-            <div class="section-title">⚡ Real Smartphone Price Drops</div>
-            <div class="products-grid">
-                <!-- Product 1: OnePlus Nord CE4 Lite -->
-                <div class="product-card">
-                    <span class="badge">Hot Deal</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/61Io5-gQA7L._SX679_.jpg" alt="OnePlus Nord CE4 Lite 5G" onerror="this.src='https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">OnePlus Nord CE4 Lite 5G (Super Blue, 8GB RAM, 128GB Storage)</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(14,350)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-10%</span>
-                                <span class="curr-price">₹17,999</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹19,999</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B0D5Y7G83N" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-                <!-- Product 2: Realme NARZO 70x 5G -->
-                <div class="product-card">
-                    <span class="badge">Loot Offer</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/71RovAs8p6L._SX679_.jpg" alt="realme NARZO 70x 5G" onerror="this.src='https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">realme NARZO 70x 5G (Forest Green, 6GB RAM, 128GB Storage)</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(8,740)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-28%</span>
-                                <span class="curr-price">₹12,999</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹17,999</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B0D1Y9NLX9" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-                <!-- Product 3: Redmi 13C 5G -->
-                <div class="product-card">
-                    <span class="badge">Budget Pick</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/813tct7-X9L._SX679_.jpg" alt="Redmi 13C 5G" onerror="this.src='https://images.unsplash.com/photo-1565849904461-09a7dfdb3552?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Redmi 13C 5G (Startrail Green, 4GB RAM, 128GB Storage)</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(23,410)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-31%</span>
-                                <span class="curr-price">₹9,699</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹13,999</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B0CNX6W7N2" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-                <!-- Product 4: OnePlus Nord CE4 -->
-                <div class="product-card">
-                    <span class="badge">Best Seller</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/61SuX6U1zAL._SX679_.jpg" alt="OnePlus Nord CE 4" onerror="this.src='https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">OnePlus Nord CE4 (Celadon Marble, 8GB RAM, 128GB Storage)</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(19,820)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-8%</span>
-                                <span class="curr-price">₹22,999</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹24,999</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B0CX56M97L" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
+        <!-- --- LIVE SIDEBAR ADD TO CART SYSTEM --- -->
+        <aside class="cart-sidebar">
+            <h3 class="cart-title">Your Cart <span id="cart-count" style="background:#cc0c39; color:#fff; padding:2px 8px; border-radius:10px; font-size:0.75rem;">0</span></h3>
+            <ul class="cart-items" id="cart-list">
+                <li style="color:#777; font-size:0.85rem; text-align:center; padding: 20px 0;">Cart is empty</li>
+            </ul>
+            <div class="cart-total">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal">₹0</span>
             </div>
+            <button class="checkout-btn" onclick="checkoutCart()">Proceed to Checkout</button>
+        </aside>
 
-            <!-- Category 2: Audio & Wearables Live Deals -->
-            <div class="section-title">🎧 Premium Sound & Audio Deals</div>
-            <div class="products-grid">
-                <!-- Product 5: OnePlus Buds Pro 3 -->
-                <div class="product-card">
-                    <span class="badge blue-badge">New Launch</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/51r+RcoM2TL._SX679_.jpg" alt="OnePlus Buds Pro 3" onerror="this.src='https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">OnePlus Buds Pro 3 (Midnight Opal, Dual Drivers ANC)</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(1,520)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-15%</span>
-                                <span class="curr-price">₹11,999</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹13,999</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B0D9M7G8WN" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-                <!-- Product 6: boAt Airdopes 141 -->
-                <div class="product-card">
-                    <span class="badge blue-badge">Massive Loot</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/510-+N2YcoL._SX679_.jpg" alt="boAt Airdopes 141" onerror="this.src='https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">boAt Airdopes 141 Bluetooth Wireless Earbuds (45H Playback)</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(234,800)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-71%</span>
-                                <span class="curr-price">₹1,299</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹4,490</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B09N3ZLB3T" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-                <!-- Product 7: boAt BassHeads 100 Wired -->
-                <div class="product-card">
-                    <span class="badge blue-badge">Under ₹399</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/31S1I32b1AL._SX679_.jpg" alt="boAt BassHeads 100" onerror="this.src='https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">boAt BassHeads 100 In-Ear Wired Earphones with Mic (Black)</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(391,200)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-61%</span>
-                                <span class="curr-price">₹389</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹999</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B071Z97T5C" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-                <!-- Product 8: Sony WH-CH520 Wireless -->
-                <div class="product-card">
-                    <span class="badge blue-badge">Pure Comfort</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/41lAr799gqL._SX679_.jpg" alt="Sony WH-CH520" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Sony WH-CH520 Wireless On-Ear Headphones (50H Playtime)</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(17,800)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-25%</span>
-                                <span class="curr-price">₹4,490</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹5,990</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B0BYMFCSAF" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-            </div>
+    </div>
 
-            <!-- Category 3: Storage & Tech Utility -->
-            <div class="section-title">💾 Storage & Tech Accessories</div>
-            <div class="products-grid">
-                <!-- Product 9: SanDisk Ultra 64GB MicroSD -->
-                <div class="product-card">
-                    <span class="badge">Top Rated</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/617N69O-uIL._SX679_.jpg" alt="SanDisk Ultra MicroSD" onerror="this.src='https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">SanDisk Ultra 64GB MicroSDXC UHS-I Memory Card 140MB/s</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(122,900)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-58%</span>
-                                <span class="curr-price">₹499</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹1,200</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B0CY5M97LX" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-                <!-- Product 10: SanDisk Ultra Dual Drive 64GB OTG -->
-                <div class="product-card">
-                    <span class="badge">Daily Essential</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/61vGHiM4InL._SX679_.jpg" alt="SanDisk Ultra Dual Drive" onerror="this.src='https://images.unsplash.com/photo-1601524909162-be87252be298?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">SanDisk Ultra Dual Drive Go Type-C 64GB Flash Drive</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(57,110)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-56%</span>
-                                <span class="curr-price">₹569</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹1,300</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B0842N6S7Y" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-                <!-- Product 11: TP-Link AC750 WiFi Extender -->
-                <div class="product-card">
-                    <span class="badge">Must Have</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/51H0f-q0PBL._SX679_.jpg" alt="TP-Link WiFi Extender" onerror="this.src='https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">TP-Link AC750 Dual Band WiFi Range Extender (RE200)</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(42,350)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-57%</span>
-                                <span class="curr-price">₹1,499</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹3,499</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B00H324K70" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-                <!-- Product 12: Mi Power Bank 3i -->
-                <div class="product-card">
-                    <span class="badge">Best Seller</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/71lVwl3q-kL._SX679_.jpg" alt="Mi Power Bank 3i" onerror="this.src='https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Mi Power Bank 3i 20000mAh (18W Fast Charging)</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(154,600)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-10%</span>
-                                <span class="curr-price">₹1,999</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹2,199</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B08HV83HL3" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category 4: Personal Grooming Electronics -->
-            <div class="section-title">⚡ Personal Care Electronics</div>
-            <div class="products-grid">
-                <!-- Product 13: Philips Multi Grooming Kit -->
-                <div class="product-card">
-                    <span class="badge blue-badge">Top Quality</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/61-d70A6RdL._SX679_.jpg" alt="Philips Trimmer" onerror="this.src='https://images.unsplash.com/photo-1621607512214-68297480165e?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Philips Multi Grooming Kit (9-in-1 Trimmer for Face & Hair)</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(49,200)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-19%</span>
-                                <span class="curr-price">₹1,779</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹2,195</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B07799R41Q" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-                <!-- Product 14: Nova Foldable Hair Dryer -->
-                <div class="product-card">
-                    <span class="badge blue-badge">Super Saver</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/51M13y6D9HL._SX679_.jpg" alt="Nova Hair Dryer" onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Nova NHP 8100 Silky Shine 1200 Watts Hot & Cold Hair Dryer</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(34,100)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-51%</span>
-                                <span class="curr-price">₹439</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹899</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B0109Z8RRE" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-                <!-- Product 15: Oral-B Electric Toothbrush -->
-                <div class="product-card">
-                    <span class="badge blue-badge">Oral Care</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/61b7L46wBVL._SX679_.jpg" alt="Oral-B Electric Toothbrush" onerror="this.src='https://images.unsplash.com/photo-1559592481-74153949de23?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Oral-B CrossAction Electric Rechargeable Toothbrush</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(23,800)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-25%</span>
-                                <span class="curr-price">₹1,499</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹1,999</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B07799R21P" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-                <!-- Product 16: Philips Hair Straightener -->
-                <div class="product-card">
-                    <span class="badge blue-badge">Top Styling</span>
-                    <div class="product-img-box">
-                        <img src="https://m.media-amazon.com/images/I/51R8fN8e+8L._SX679_.jpg" alt="Philips Straightener" onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Philips Selfie Straightener (HP8302/00 - SilkPro Care)</div>
-                        <div class="stars">★★★★☆ <span style="color:#565959; font-size:0.75rem;">(38,400)</span></div>
-                        <div class="price-box">
-                            <div class="price-main">
-                                <span class="disc-percent">-13%</span>
-                                <span class="curr-price">₹1,299</span>
-                            </div>
-                            <span class="mrp">M.R.P.: ₹1,495</span>
-                        </div>
-                        <a href="https://www.amazon.in/dp/B00S94I3XG" target="_blank" class="buy-btn">Buy on Amazon ➔</a>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        © 2026 SN Deals. All rights reserved. Amazon and all related logos are trademarks of Amazon.com, Inc. or its affiliates.
-    </footer>
-
-    <!-- Slider Javascript Code -->
+    <!-- AUTO LISTING & CART CORE JAVASCRIPT -->
     <script>
-        let currentSlide = 0;
-        const totalSlides = 3;
-        const slider = document.getElementById('slider');
+        // Copyright-Free Dynamic Product Pool (Aap yahan naye products add/remove kar sakte hain)
+        const productsData = [
+            { id: 1, name: "Premium 5G Smartphone (8GB/128GB)", mrp: 19999, discount: 15, rating: 4, reviews: "12,450", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300", tag: "Loot Deal", link: "https://www.amazon.in" },
+            { id: 2, name: "Noise Cancelling Wireless Earbuds", mrp: 4499, discount: 60, rating: 5, reviews: "84,110", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300", tag: "Best Seller", link: "https://www.amazon.in" },
+            { id: 3, name: "Ultra Fast 20000mAh Power Bank", mrp: 2499, discount: 30, rating: 4, reviews: "15,200", img: "https://images.unsplash.com/photo-1609592424407-3026844ba9ec?w=300", tag: "Top Pick", link: "https://www.amazon.in" },
+            { id: 4, name: "Smart Fitness Watch with SpO2", mrp: 5999, discount: 55, rating: 4, reviews: "42,900", img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300", tag: "Lightning Deal", link: "https://www.amazon.in" },
+            { id: 5, name: "High-Speed 64GB OTG Flash Drive", mrp: 1300, discount: 58, rating: 5, reviews: "21,150", img: "https://images.unsplash.com/photo-1601524909162-be87252be298?w=300", tag: "Trending", link: "https://www.amazon.in" },
+            { id: 6, name: "Waterproof Portable Bluetooth Speaker", mrp: 3999, discount: 45, rating: 4, reviews: "9,830", img: "https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=300", tag: "Price Drop", link: "https://www.amazon.in" }
+        ];
 
-        function moveSlide(direction) {
-            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-            slider.style.transform = `translateX(-${currentSlide * 33.333}%)`;
+        let cart = [];
+
+        // 1. Function to Auto-List Products with Calculated Discount Prices
+        function autoListProducts() {
+            const container = document.getElementById('auto-products-container');
+            container.innerHTML = ""; // Clear content
+
+            productsData.forEach(product => {
+                // Discount math calculation
+                const calculatedPrice = Math.round(product.mrp - (product.mrp * (product.discount / 100)));
+                
+                // Star String generator
+                let starString = "★".repeat(product.rating) + "☆".repeat(5 - product.rating);
+
+                const productHTML = `
+                    <div class="product-card">
+                        <span class="badge">${product.tag}</span>
+                        <div class="product-img-box">
+                            <img src="${product.img}" alt="${product.name}">
+                        </div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="stars">${starString} <span style="color:#565959; font-size:0.75rem;">(${product.reviews})</span></div>
+                        <div class="price-box">
+                            <div class="price-main">
+                                <span class="disc-percent">-${product.discount}%</span>
+                                <span class="curr-price">₹${calculatedPrice.toLocaleString('en-IN')}</span>
+                            </div>
+                            <span class="mrp">M.R.P.: ₹${product.mrp.toLocaleString('en-IN')}</span>
+                        </div>
+                        <div class="action-btns">
+                            <button class="btn btn-cart" onclick="addToCart(${product.id}, '${product.name}', ${calculatedPrice})">Add to Cart</button>
+                            <a href="${product.link}" target="_blank" class="btn btn-buy">Buy Now on Amazon</a>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += productHTML;
+            });
         }
 
-        // Auto slide change in 4 seconds
-        setInterval(() => {
-            moveSlide(1);
-        }, 4000);
+        // 2. Add To Cart System Logic
+        function addToCart(id, name, price) {
+            const existingItem = cart.find(item => item.id === id);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ id, name, price, qty: 1 });
+            }
+            updateCartUI();
+        }
+
+        // 3. Update Cart Sidebar View
+        function updateCartUI() {
+            const cartList = document.getElementById('cart-list');
+            const cartCount = document.getElementById('cart-count');
+            const cartSubtotal = document.getElementById('cart-subtotal');
+
+            if (cart.length === 0) {
+                cartList.innerHTML = `<li style="color:#777; font-size:0.85rem; text-align:center; padding: 20px 0;">Cart is empty</li>`;
+                cartCount.innerText = "0";
+                cartSubtotal.innerText = "₹0";
+                return;
+            }
+
+            cartList.innerHTML = "";
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+                totalItems += item.qty;
+                totalPrice += (item.price * item.qty);
+
+                cartList.innerHTML += `
+                    <li class="cart-item">
+                        <div style="max-width: 70%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                            <strong>${item.qty}x</strong> ${item.name}
+                        </div>
+                        <div>₹${(item.price * item.qty).toLocaleString('en-IN')}</div>
+                    </li>
+                `;
+            });
+
+            cartCount.innerText = totalItems;
+            cartSubtotal.innerText = "₹" + totalPrice.toLocaleString('en-IN');
+        }
+
+        // 4. Checkout Handler
+        function checkoutCart() {
+            if(cart.length === 0) {
+                alert("Aapka cart khali hai! Kripya pehle products add karein.");
+            } else {
+                alert("Redirecting to execution page... Aap in products ko direct Amazon affiliate system se checkout karwa sakte hain.");
+            }
+        }
+
+        // Initialize script on load
+        window.onload = autoListProducts;
     </script>
 </body>
 </html>
