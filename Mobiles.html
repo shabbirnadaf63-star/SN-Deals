@@ -5,42 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Deals Hub - Dynamic Auto Listing | SN Deals</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #eaeded; color: #111; padding-bottom: 60px; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #eaeded; color: #111; padding-bottom: 20px; }
         
         /* Navigation & Header */
         .site-nav { background: #131921; padding: 12px 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .nav-list { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-list { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; flex-wrap: wrap; }
         .nav-list a { text-decoration: none; color: #fff; padding: 8px 14px; border-radius: 4px; font-weight: 600; font-size: 0.95rem; }
         .nav-list a[aria-current="page"] { background: #febd69; color: #111; }
         
+        /* Header-integrated Cart Icon (Fixes the ugly layout issue) */
+        .header-cart-btn { background: none; border: none; color: #fff; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; position: relative; }
+        .header-cart-btn .badge { background: #cc0c39; color: #fff; border-radius: 50%; padding: 2px 6px; font-size: 0.8rem; min-width: 15px; text-align: center; }
+
         .brand-header { background: #232f3e; color: #fff; padding: 15px 20px; text-align: center; }
         .brand-header h1 { margin: 0; font-size: 1.6rem; color: #febd69; }
 
-        /* LIVE OFFERS SLIDER (MARQUEE) */
-        .offers-slider { background: #cc0c39; color: white; padding: 10px 0; font-weight: bold; overflow: hidden; white-space: nowrap; box-shadow: inset 0 0 10px rgba(0,0,0,0.2); }
-        .slider-track { display: inline-block; animation: scrollOffers 25s linear infinite; }
-        .slider-item { display: inline-block; margin-right: 50px; font-size: 0.95rem; }
+        /* LIVE OFFERS SMOOTH AUTO-SLIDER (Fixes non-sliding issue) */
+        .offers-slider { background: #cc0c39; color: white; padding: 12px 0; font-weight: bold; overflow: hidden; position: relative; width: 100%; display: flex; }
+        .slider-track { display: flex; width: max-content; animation: scrollOffers 20s linear infinite; }
+        .slider-item { padding: 0 30px; font-size: 0.95rem; flex-shrink: 0; white-space: nowrap; }
         .slider-item span { background: #fff; color: #cc0c39; padding: 2px 6px; border-radius: 3px; margin-right: 8px; font-weight: 800; }
 
         @keyframes scrollOffers {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Infinite loop fix */
         }
 
-        /* Main Layout */
+        /* Main Container Layout */
         .main-container { max-width: 1400px; margin: 20px auto; padding: 0 15px; }
         .content-area { width: 100%; }
 
         .section-title { background: #fff; padding: 15px 20px; margin-bottom: 15px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 5px solid #e47911; font-size: 1.25rem; font-weight: 700; }
 
-        /* Products Grid (Mobile optimization focused) */
+        /* Products Grid optimized for Mobile/Desktop */
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
         /* Product Card */
         .product-card { background: #fff; border-radius: 6px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 2px 4px rgba(0,0,0,0.08); position: relative; border: 1px solid #ddd; }
-        .badge { position: absolute; top: 10px; left: 10px; background: #cc0c39; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border-radius: 2px; z-index: 5; }
+        .tag-badge { position: absolute; top: 10px; left: 10px; background: #cc0c39; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border-radius: 2px; z-index: 5; }
         
-        /* Image container */
+        /* Fixed Images (Using Premium Live Links) */
         .product-img-box { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; background: #fff; border-radius: 4px; overflow: hidden; }
         .product-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
         
@@ -61,10 +66,7 @@
         .btn-buy { background: #e47911; border-color: #944d06; color: #fff; }
         .btn-buy:hover { background: #d06d0b; }
 
-        /* --- FLOATING & SLIDE-OUT CART SYSTEM (Mobile Friendly) --- */
-        .floating-cart-btn { position: fixed; bottom: 20px; right: 20px; background: #e47911; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: none; cursor: pointer; z-index: 200; font-size: 1.5rem; }
-        .cart-badge { position: absolute; top: -5px; right: -5px; background: #cc0c39; color: white; border-radius: 50%; padding: 4px 8px; font-size: 0.75rem; font-weight: bold; }
-
+        /* --- SLIDE-OUT CART PANEL (Clean, Modern drawer style) --- */
         .cart-overlay { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100%; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.2); transition: 0.3s ease-in-out; z-index: 300; display: flex; flex-direction: column; }
         .cart-overlay.active { right: 0; }
 
@@ -73,13 +75,13 @@
         .close-cart { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
 
         .cart-items { list-style: none; padding: 15px; margin: 0; overflow-y: auto; flex-grow: 1; }
-        .cart-item { display: flex; justify-content: space-between; font-size: 0.9rem; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .cart-item { display: flex; justify-content: space-between; font-size: 0.9rem; padding: 10px 0; border-bottom: 1px solid #eee; align-items: center; }
         
         .cart-footer { padding: 15px; background: #f9f9f9; border-top: 1px solid #ddd; }
         .cart-total { font-weight: 700; font-size: 1.1rem; display: flex; justify-content: space-between; margin-bottom: 15px; }
         .checkout-btn { display: block; width: 100%; text-align: center; background: #e47911; color: #fff; border: none; padding: 12px; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 1rem; }
 
-        /* Responsive Fixes */
+        /* Responsive Fixes for Mobile Viewports */
         @media (max-width: 576px) {
             .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .product-card { padding: 10px; }
@@ -88,36 +90,49 @@
             .curr-price { font-size: 1rem; }
             .mrp { font-size: 0.75rem; }
             .btn { padding: 6px; font-size: 0.75rem; }
+            .nav-list { display: none; } /* Hide heavy menu list in mobile navigation header for clean space */
         }
     </style>
 </head>
 <body>
     
+    <!-- Top Bar with Integrated Header Cart Button -->
     <nav class="site-nav">
-        <ul class="nav-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="Mobiles.html" aria-current="page">Amazon</a></li>
-            <li><a href="Electronics.html">MaviGadget</a></li>
-            <li><a href="NikolaToy.html">🧸 NikolaToy</a></li>
-        </ul>
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Mobiles.html" aria-current="page">Amazon</a></li>
+                <li><a href="Electronics.html">MaviGadget</a></li>
+                <li><a href="NikolaToy.html">🧸 NikolaToy</a></li>
+            </ul>
+            <button class="header-cart-btn" onclick="toggleCart(true)">
+                <span>🛒 Cart</span>
+                <span class="badge" id="cart-count">0</span>
+            </button>
+        </div>
     </nav>
 
     <header class="brand-header">
         <h1>Live Mega Deals Dashboard</h1>
     </header>
 
-    <!-- 1. LIVE OFFERS AUTO-SLIDER (Marquee Banner) -->
+    <!-- LIVE OFFERS AUTO-SLIDER (Double Track for Infinite Scroll Loop) -->
     <div class="offers-slider">
         <div class="slider-track">
             <span class="slider-item"><span>MEGA OFFER</span> Redmi Note 13 Pro at Flat 30% Off!</span>
             <span class="slider-item"><span>LIGHTNING DEAL</span> Boat Smartwatches from ₹1,499!</span>
-            <span class="slider-item"><span>PRICE DROP</span> Apple AirPods Pro (2nd Gen) at lowest price!</span>
+            <span class="slider-item"><span>PRICE DROP</span> Apple AirPods Pro at lowest price!</span>
+            <span class="slider-item"><span>LOOT DEAL</span> 20000mAh Power Banks starting ₹999!</span>
+            <!-- Duplicate for infinite looping smooth effect -->
+            <span class="slider-item"><span>MEGA OFFER</span> Redmi Note 13 Pro at Flat 30% Off!</span>
+            <span class="slider-item"><span>LIGHTNING DEAL</span> Boat Smartwatches from ₹1,499!</span>
+            <span class="slider-item"><span>PRICE DROP</span> Apple AirPods Pro at lowest price!</span>
             <span class="slider-item"><span>LOOT DEAL</span> 20000mAh Power Banks starting ₹999!</span>
         </div>
     </div>
 
     <div class="main-container">
-        <!-- CONTENT AREA -->
+        <!-- Main Area for Products -->
         <div class="content-area">
             <div class="section-title">🔥 Live Auto-Listing Discount Offers</div>
             <div class="products-grid" id="auto-products-container">
@@ -126,16 +141,10 @@
         </div>
     </div>
 
-    <!-- 2. FLOATING CART BUTTON -->
-    <button class="floating-cart-btn" onclick="toggleCart(true)">
-        🛒
-        <span class="cart-badge" id="cart-count">0</span>
-    </button>
-
-    <!-- 3. SLIDE-OUT CART PANEL -->
+    <!-- SLIDE-OUT CART PANEL (Drawer layout) -->
     <div class="cart-overlay" id="cart-panel">
         <div class="cart-header">
-            <h3>Your Cart</h3>
+            <h3>Your Shopping Cart</h3>
             <button class="close-cart" onclick="toggleCart(false)">×</button>
         </div>
         <ul class="cart-items" id="cart-list">
@@ -151,13 +160,13 @@
     </div>
 
     <script>
-        // High-Quality Global Links with dynamic backup
+        // High-Quality Global Premium Image Links (Resolved broken link issues)
         const productsData = [
             { id: 1, name: "Premium 5G Smartphone (8GB/128GB)", mrp: 19999, discount: 15, rating: 4, reviews: "12,450", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400", tag: "Loot Deal", link: "https://www.amazon.in" },
             { id: 2, name: "Noise Cancelling Wireless Earbuds", mrp: 4499, discount: 60, rating: 5, reviews: "84,110", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400", tag: "Best Seller", link: "https://www.amazon.in" },
-            { id: 3, name: "Ultra Fast 20000mAh Power Bank", mrp: 2499, discount: 30, rating: 4, reviews: "15,200", img: "https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=400", tag: "Top Pick", link: "https://www.amazon.in" },
+            { id: 3, name: "Ultra Fast 20000mAh Power Bank", mrp: 2499, discount: 30, rating: 4, reviews: "15,200", img: "https://images.unsplash.com/photo-1609592424407-3026844ba9ec?w=400", tag: "Top Pick", link: "https://www.amazon.in" },
             { id: 4, name: "Smart Fitness Watch with SpO2", mrp: 5999, discount: 55, rating: 4, reviews: "42,900", img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400", tag: "Lightning Deal", link: "https://www.amazon.in" },
-            { id: 5, name: "High-Speed 64GB OTG Flash Drive", mrp: 1300, discount: 58, rating: 5, reviews: "21,150", img: "https://images.unsplash.com/photo-1562975031-fb31525210f1?w=400", tag: "Trending", link: "https://www.amazon.in" },
+            { id: 5, name: "High-Speed 64GB OTG Flash Drive", mrp: 1300, discount: 58, rating: 5, reviews: "21,150", img: "https://images.unsplash.com/photo-1601524909162-be87252be298?w=400", tag: "Trending", link: "https://www.amazon.in" },
             { id: 6, name: "Waterproof Portable Bluetooth Speaker", mrp: 3999, discount: 45, rating: 4, reviews: "9,830", img: "https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=400", tag: "Price Drop", link: "https://www.amazon.in" }
         ];
 
@@ -173,9 +182,9 @@
 
                 const productHTML = `
                     <div class="product-card">
-                        <span class="badge">${product.tag}</span>
+                        <span class="tag-badge">${product.tag}</span>
                         <div class="product-img-box">
-                            <img src="${product.img}" alt="${product.name}" onerror="this.onerror=null; this.src='https://placehold.co/400x400/f3f3f3/333333?text=Deal+Item';">
+                            <img src="${product.img}" alt="${product.name}" onerror="this.onerror=null; this.src='https://placehold.co/400x400/f3f3f3/333333?text=Amazon+Deal';">
                         </div>
                         <div class="product-name">${product.name}</div>
                         <div class="stars">${starString} <span style="color:#565959; font-size:0.75rem;">(${product.reviews})</span></div>
@@ -196,7 +205,7 @@
             });
         }
 
-        // Toggle Slide-out Cart Panel
+        // Toggle slide-out Cart
         function toggleCart(isOpen) {
             const panel = document.getElementById('cart-panel');
             if(isOpen) {
@@ -214,7 +223,7 @@
                 cart.push({ id, name, price, qty: 1 });
             }
             updateCartUI();
-            toggleCart(true); // Open panel automatically on adding
+            toggleCart(true); // Auto-open cart drawer when a product is added
         }
 
         function updateCartUI() {
@@ -239,7 +248,7 @@
 
                 cartList.innerHTML += `
                     <li class="cart-item">
-                        <div style="max-width: 70%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                        <div style="max-width: 65%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
                             <strong>${item.qty}x</strong> ${item.name}
                         </div>
                         <div>₹${(item.price * item.qty).toLocaleString('en-IN')}</div>
@@ -255,7 +264,7 @@
             if(cart.length === 0) {
                 alert("Aapka cart khali hai!");
             } else {
-                alert("Proceeding to Secure Amazon checkout...");
+                alert("Proceeding to Secure Checkout system...");
             }
         }
 
