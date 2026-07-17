@@ -16,7 +16,6 @@
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; padding: 40px 20px; max-width: 1000px; margin: auto; }
         .card { background: white; padding: 15px; border-radius: 12px; border: 1px solid #e5e7eb; text-align: center; transition: 0.3s; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 200px; object-fit: contain; }
         .buy-btn { display: block; margin-top: 15px; padding: 12px; background: #2563eb; color: #fff; text-decoration: none; border-radius: 8px; font-weight: bold; }
     </style>
 </head>
@@ -34,26 +33,19 @@
         </ul>
     </nav>
 
-    <div class="grid" id="product-grid">
-        <!-- 4 Gadgets Examples -->
-        <script>
-            const gadgets = [
-                {name: "Smart Home Hub", link: "https://mavigadget.com"},
-                {name: "Creative Desk Lamp", link: "https://mavigadget.com"},
-                {name: "Portable Tech Tool", link: "https://mavigadget.com"},
-                {name: "Future Gadget V1", link: "https://mavigadget.com"}
-            ];
-            gadgets.forEach(g => {
-                document.write(`
-                    <div class="card">
-                        <div style="font-size: 3rem;">⚡</div>
-                        <h3>${g.name}</h3>
-                        <a href="${g.link}" class="buy-btn" target="_blank">View Details</a>
-                    </div>
-                `);
-            });
-        </script>
+    <div class="grid">
+        <div class="card">
+            <div style="font-size: 3rem;">⚡</div>
+            <h3>Smart Lifestyle Gadgets</h3>
+            <p>Explore the best creative tech</p>
+            <a href="https://mavigadget.com/?ref=3rqtosfk" class="buy-btn" target="_blank">Shop Now</a>
+        </div>
+        <div class="card">
+            <div style="font-size: 3rem;">🏠</div>
+            <h3>Smart Home Solutions</h3>
+            <p>Modernize your home today</p>
+            <a href="https://mavigadget.com/?ref=3rqtosfk" class="buy-btn" target="_blank">View Deals</a>
+        </div>
     </div>
-
 </body>
 </html>
