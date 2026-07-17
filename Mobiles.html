@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Deals Hub - Dynamic Auto Listing | SN Deals</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #eaeded; color: #111; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #eaeded; color: #111; padding-bottom: 60px; }
         
         /* Navigation & Header */
         .site-nav { background: #131921; padding: 12px 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
@@ -16,23 +16,33 @@
         .brand-header { background: #232f3e; color: #fff; padding: 15px 20px; text-align: center; }
         .brand-header h1 { margin: 0; font-size: 1.6rem; color: #febd69; }
 
-        /* Main Container Layout */
-        .main-container { max-width: 1400px; margin: 20px auto; padding: 0 15px; display: flex; gap: 20px; }
-        .content-area { flex: 3; }
-        .cart-sidebar { flex: 1; background: #fff; padding: 15px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); height: fit-content; position: sticky; top: 80px; }
+        /* LIVE OFFERS SLIDER (MARQUEE) */
+        .offers-slider { background: #cc0c39; color: white; padding: 10px 0; font-weight: bold; overflow: hidden; white-space: nowrap; box-shadow: inset 0 0 10px rgba(0,0,0,0.2); }
+        .slider-track { display: inline-block; animation: scrollOffers 25s linear infinite; }
+        .slider-item { display: inline-block; margin-right: 50px; font-size: 0.95rem; }
+        .slider-item span { background: #fff; color: #cc0c39; padding: 2px 6px; border-radius: 3px; margin-right: 8px; font-weight: 800; }
+
+        @keyframes scrollOffers {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Main Layout */
+        .main-container { max-width: 1400px; margin: 20px auto; padding: 0 15px; }
+        .content-area { width: 100%; }
 
         .section-title { background: #fff; padding: 15px 20px; margin-bottom: 15px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 5px solid #e47911; font-size: 1.25rem; font-weight: 700; }
 
-        /* Products Grid */
+        /* Products Grid (Mobile optimization focused) */
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
-        /* Product Card Styles */
+        /* Product Card */
         .product-card { background: #fff; border-radius: 6px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 2px 4px rgba(0,0,0,0.08); position: relative; border: 1px solid #ddd; }
         .badge { position: absolute; top: 10px; left: 10px; background: #cc0c39; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border-radius: 2px; z-index: 5; }
         
-        /* Managed Image Box with fallback helper */
-        .product-img-box { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; background: #f7f7f7; border-radius: 4px; overflow: hidden; }
-        .product-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+        /* Image container */
+        .product-img-box { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; background: #fff; border-radius: 4px; overflow: hidden; }
+        .product-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
         
         .product-name { font-size: 0.95rem; font-weight: 600; line-height: 1.4; height: 40px; overflow: hidden; margin-bottom: 8px; color: #0f1111; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
         .stars { color: #ffa41c; font-size: 0.85rem; margin-bottom: 8px; }
@@ -43,7 +53,7 @@
         .disc-percent { color: #cc0c39; font-weight: 700; font-size: 1rem; }
         .mrp { color: #565959; text-decoration: line-through; font-size: 0.85rem; }
 
-        /* Buttons layout */
+        /* Action Buttons */
         .action-btns { display: flex; flex-direction: column; gap: 8px; }
         .btn { display: block; text-align: center; padding: 10px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600; border: 1px solid; cursor: pointer; transition: 0.2s; }
         .btn-cart { background: #fad14b; border-color: #a88734; color: #111; }
@@ -51,22 +61,33 @@
         .btn-buy { background: #e47911; border-color: #944d06; color: #fff; }
         .btn-buy:hover { background: #d06d0b; }
 
-        /* Cart Widgets */
-        .cart-title { font-size: 1.1rem; font-weight: 700; margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-        .cart-items { list-style: none; padding: 0; margin: 10px 0; max-height: 250px; overflow-y: auto; }
-        .cart-item { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed #eee; }
-        .cart-total { font-weight: 700; font-size: 1rem; display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid #ddd; }
-        .checkout-btn { display: block; width: 100%; text-align: center; background: #e47911; color: #fff; border: none; padding: 12px; margin-top: 15px; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
+        /* --- FLOATING & SLIDE-OUT CART SYSTEM (Mobile Friendly) --- */
+        .floating-cart-btn { position: fixed; bottom: 20px; right: 20px; background: #e47911; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: none; cursor: pointer; z-index: 200; font-size: 1.5rem; }
+        .cart-badge { position: absolute; top: -5px; right: -5px; background: #cc0c39; color: white; border-radius: 50%; padding: 4px 8px; font-size: 0.75rem; font-weight: bold; }
 
-        /* ADVANCED RESPONSIVE FIXES FOR MOBILE VIEWS */
-        @media (max-width: 992px) {
-            .main-container { flex-direction: column; }
-            .cart-sidebar { position: static; width: auto; margin-bottom: 20px; order: -1; }
-        }
+        .cart-overlay { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100%; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.2); transition: 0.3s ease-in-out; z-index: 300; display: flex; flex-direction: column; }
+        .cart-overlay.active { right: 0; }
+
+        .cart-header { background: #232f3e; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .cart-header h3 { margin: 0; font-size: 1.1rem; }
+        .close-cart { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+        .cart-items { list-style: none; padding: 15px; margin: 0; overflow-y: auto; flex-grow: 1; }
+        .cart-item { display: flex; justify-content: space-between; font-size: 0.9rem; padding: 10px 0; border-bottom: 1px solid #eee; }
+        
+        .cart-footer { padding: 15px; background: #f9f9f9; border-top: 1px solid #ddd; }
+        .cart-total { font-weight: 700; font-size: 1.1rem; display: flex; justify-content: space-between; margin-bottom: 15px; }
+        .checkout-btn { display: block; width: 100%; text-align: center; background: #e47911; color: #fff; border: none; padding: 12px; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 1rem; }
+
+        /* Responsive Fixes */
         @media (max-width: 576px) {
-            .products-grid { grid-template-columns: 1fr; gap: 15px; }
-            .product-card { padding: 12px; }
-            .product-img-box { height: 220px; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .product-card { padding: 10px; }
+            .product-img-box { height: 130px; }
+            .product-name { font-size: 0.8rem; height: 32px; }
+            .curr-price { font-size: 1rem; }
+            .mrp { font-size: 0.75rem; }
+            .btn { padding: 6px; font-size: 0.75rem; }
         }
     </style>
 </head>
@@ -85,39 +106,58 @@
         <h1>Live Mega Deals Dashboard</h1>
     </header>
 
+    <!-- 1. LIVE OFFERS AUTO-SLIDER (Marquee Banner) -->
+    <div class="offers-slider">
+        <div class="slider-track">
+            <span class="slider-item"><span>MEGA OFFER</span> Redmi Note 13 Pro at Flat 30% Off!</span>
+            <span class="slider-item"><span>LIGHTNING DEAL</span> Boat Smartwatches from ₹1,499!</span>
+            <span class="slider-item"><span>PRICE DROP</span> Apple AirPods Pro (2nd Gen) at lowest price!</span>
+            <span class="slider-item"><span>LOOT DEAL</span> 20000mAh Power Banks starting ₹999!</span>
+        </div>
+    </div>
+
     <div class="main-container">
-        
-        <!-- --- CONTENT AREA --- -->
+        <!-- CONTENT AREA -->
         <div class="content-area">
             <div class="section-title">🔥 Live Auto-Listing Discount Offers</div>
             <div class="products-grid" id="auto-products-container">
                 <!-- Injected via JavaScript -->
             </div>
         </div>
+    </div>
 
-        <!-- --- CART SIDEBAR --- -->
-        <aside class="cart-sidebar">
-            <h3 class="cart-title">Your Cart <span id="cart-count" style="background:#cc0c39; color:#fff; padding:2px 8px; border-radius:10px; font-size:0.75rem;">0</span></h3>
-            <ul class="cart-items" id="cart-list">
-                <li style="color:#777; font-size:0.85rem; text-align:center; padding: 20px 0;">Cart is empty</li>
-            </ul>
+    <!-- 2. FLOATING CART BUTTON -->
+    <button class="floating-cart-btn" onclick="toggleCart(true)">
+        🛒
+        <span class="cart-badge" id="cart-count">0</span>
+    </button>
+
+    <!-- 3. SLIDE-OUT CART PANEL -->
+    <div class="cart-overlay" id="cart-panel">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" onclick="toggleCart(false)">×</button>
+        </div>
+        <ul class="cart-items" id="cart-list">
+            <li style="color:#777; text-align:center; padding: 40px 0;">Your cart is empty.</li>
+        </ul>
+        <div class="cart-footer">
             <div class="cart-total">
                 <span>Subtotal:</span>
                 <span id="cart-subtotal">₹0</span>
             </div>
             <button class="checkout-btn" onclick="checkoutCart()">Proceed to Checkout</button>
-        </aside>
-
+        </div>
     </div>
 
     <script>
-        // High-Quality Global Dynamic Images Pool (with auto-fallback system)
+        // High-Quality Global Links with dynamic backup
         const productsData = [
             { id: 1, name: "Premium 5G Smartphone (8GB/128GB)", mrp: 19999, discount: 15, rating: 4, reviews: "12,450", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400", tag: "Loot Deal", link: "https://www.amazon.in" },
             { id: 2, name: "Noise Cancelling Wireless Earbuds", mrp: 4499, discount: 60, rating: 5, reviews: "84,110", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400", tag: "Best Seller", link: "https://www.amazon.in" },
-            { id: 3, name: "Ultra Fast 20000mAh Power Bank", mrp: 2499, discount: 30, rating: 4, reviews: "15,200", img: "https://images.unsplash.com/photo-1609592424407-3026844ba9ec?w=400", tag: "Top Pick", link: "https://www.amazon.in" },
+            { id: 3, name: "Ultra Fast 20000mAh Power Bank", mrp: 2499, discount: 30, rating: 4, reviews: "15,200", img: "https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=400", tag: "Top Pick", link: "https://www.amazon.in" },
             { id: 4, name: "Smart Fitness Watch with SpO2", mrp: 5999, discount: 55, rating: 4, reviews: "42,900", img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400", tag: "Lightning Deal", link: "https://www.amazon.in" },
-            { id: 5, name: "High-Speed 64GB OTG Flash Drive", mrp: 1300, discount: 58, rating: 5, reviews: "21,150", img: "https://images.unsplash.com/photo-1601524909162-be87252be298?w=400", tag: "Trending", link: "https://www.amazon.in" },
+            { id: 5, name: "High-Speed 64GB OTG Flash Drive", mrp: 1300, discount: 58, rating: 5, reviews: "21,150", img: "https://images.unsplash.com/photo-1562975031-fb31525210f1?w=400", tag: "Trending", link: "https://www.amazon.in" },
             { id: 6, name: "Waterproof Portable Bluetooth Speaker", mrp: 3999, discount: 45, rating: 4, reviews: "9,830", img: "https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=400", tag: "Price Drop", link: "https://www.amazon.in" }
         ];
 
@@ -135,7 +175,6 @@
                     <div class="product-card">
                         <span class="badge">${product.tag}</span>
                         <div class="product-img-box">
-                            <!-- added onerror placeholder fixer -->
                             <img src="${product.img}" alt="${product.name}" onerror="this.onerror=null; this.src='https://placehold.co/400x400/f3f3f3/333333?text=Deal+Item';">
                         </div>
                         <div class="product-name">${product.name}</div>
@@ -149,12 +188,22 @@
                         </div>
                         <div class="action-btns">
                             <button class="btn btn-cart" onclick="addToCart(${product.id}, '${product.name}', ${calculatedPrice})">Add to Cart</button>
-                            <a href="${product.link}" target="_blank" class="btn btn-buy">Buy Now on Amazon</a>
+                            <a href="${product.link}" target="_blank" class="btn btn-buy">Buy Now</a>
                         </div>
                     </div>
                 `;
                 container.innerHTML += productHTML;
             });
+        }
+
+        // Toggle Slide-out Cart Panel
+        function toggleCart(isOpen) {
+            const panel = document.getElementById('cart-panel');
+            if(isOpen) {
+                panel.classList.add('active');
+            } else {
+                panel.classList.remove('active');
+            }
         }
 
         function addToCart(id, name, price) {
@@ -165,6 +214,7 @@
                 cart.push({ id, name, price, qty: 1 });
             }
             updateCartUI();
+            toggleCart(true); // Open panel automatically on adding
         }
 
         function updateCartUI() {
@@ -173,7 +223,7 @@
             const cartSubtotal = document.getElementById('cart-subtotal');
 
             if (cart.length === 0) {
-                cartList.innerHTML = `<li style="color:#777; font-size:0.85rem; text-align:center; padding: 20px 0;">Cart is empty</li>`;
+                cartList.innerHTML = `<li style="color:#777; text-align:center; padding: 40px 0;">Your cart is empty.</li>`;
                 cartCount.innerText = "0";
                 cartSubtotal.innerText = "₹0";
                 return;
@@ -205,7 +255,7 @@
             if(cart.length === 0) {
                 alert("Aapka cart khali hai!");
             } else {
-                alert("Redirecting to Amazon Secure Cart system...");
+                alert("Proceeding to Secure Amazon checkout...");
             }
         }
 
