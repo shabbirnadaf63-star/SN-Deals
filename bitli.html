@@ -1,21 +1,36 @@
-[
-  { "category": "mavigadget", "name": "Mavi Gadget Tool", "price": "🔥 Best Deal", "link": "https://mavigadget.com/?ref=3rqtosfk" },
-  { "category": "nikolatoy", "name": "Nikola Toy Car", "price": "🔥 Best Deal", "link": "https://nikolatoy.com/?ref=exttozbk" },
-  { "category": "hamaramall", "name": "HamaraMall Exclusive", "price": "Best Deal", "link": "https://hamaramall.com/" },
-  { "category": "amazon", "name": "Amazon Deal", "price": "⚡ Grab Now", "link": "https://link.amazon/B028bTd9T" },
-  { "category": "flipkart", "name": "Flipkart Offer", "price": "🚀 Low Price", "link": "https://fktr.in/lbA1Mm7" },
-  { "category": "myntra", "name": "Myntra Fashion", "price": "👗 Sale!", "link": "https://myntr.it/cCC8S9X" },
-  { "category": "ajio", "name": "Ajio Trends", "price": "🏷️ Deal", "link": "https://ajiio.in/CrDlpVZ" },
-  { "category": "bitli", "name": "Hot Deal", "price": "🎁 Grab Now", "link": "https://bitli.in/Na0n5tV" },
-  { "category": "bitli", "name": "Hot Deal", "price": "🎁 Grab Now", "link": "https://bitli.in/X2zLzz8" },
-  { "category": "bitli", "name": "Hot Deal", "price": "🎁 Grab Now", "link": "https://bitli.in/GpvCCBx" },
-  { "category": "bitli", "name": "Hot Deal", "price": "🎁 Grab Now", "link": "https://bitli.in/1GfaBKz" },
-  { "category": "bitli", "name": "Hot Deal", "price": "🎁 Grab Now", "link": "https://bitli.in/yEVY7xP" },
-  { "category": "bitli", "name": "Hot Deal", "price": "🎁 Grab Now", "link": "https://bitli.in/G5I1k7t" },
-  { "category": "bitli", "name": "Hot Deal", "price": "🎁 Grab Now", "link": "https://bitli.in/zQphVwi" },
-  { "category": "bitli", "name": "Hot Deal", "price": "🎁 Grab Now", "link": "https://bitli.in/J6DT9Ep" },
-  { "category": "bitli", "name": "Hot Deal", "price": "🎁 Grab Now", "link": "https://bitli.in/npVrhQJ" },
-  { "category": "bitli", "name": "Hot Deal", "price": "🎁 Grab Now", "link": "https://bitli.in/cNZ37C2" },
-  { "category": "bitli", "name": "Hot Deal", "price": "🎁 Grab Now", "link": "https://bitli.in/TQiAw44" },
-  { "category": "bitli", "name": "Hot Deal", "price": "🎁 Grab Now", "link": "https://bitli.in/9ldyz3N" }
-]
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deals Page</title>
+    <style>
+        .banner { background: #ff4500; color: white; padding: 20px; text-align: center; border-radius: 10px; }
+        .product-card { border: 1px solid #ddd; padding: 15px; margin: 10px; border-radius: 10px; text-align: center; display: inline-block; width: 200px; }
+        .btn { display: block; background: #28a745; color: white; padding: 10px; text-decoration: none; border-radius: 5px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="banner"><h2 id="page-title">Loading...</h2></div>
+    <div id="product-container"></div>
+
+    <script>
+        // बस यहाँ अपनी कैटेगरी का नाम बदलें (जैसे: 'amazon', 'flipkart', 'myntra', 'hamaramall')
+        const myCategory = 'bitli'; 
+        document.getElementById('page-title').innerText = myCategory.toUpperCase() + " DEALS";
+
+        fetch('products.json')
+        .then(r => r.json())
+        .then(data => {
+            const container = document.getElementById('product-container');
+            // यह कोड अपने आप फिल्टर कर लेगा
+            data.filter(p => p.category.toLowerCase() === myCategory.toLowerCase()).forEach(p => {
+                container.innerHTML += `
+                    <div class="product-card">
+                        <h3>${p.name}</h3>
+                        <p style="color:red; font-weight:bold;">${p.price}</p>
+                        <a href="${p.link}" target="_blank" class="btn">Buy Now</a>
+                    </div>`;
+            });
+        });
+    </script>
+</body>
+</html>
