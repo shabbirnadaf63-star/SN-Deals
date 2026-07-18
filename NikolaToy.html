@@ -1,59 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SN Deals | NikolaToy Store</title>
-    <style>
-        body{font-family:'Segoe UI',Arial,sans-serif;margin:0;background:#f6f7fb;color:#1f2937}
-        .site-header{background:linear-gradient(135deg,#ec4899,#db2777);color:#fff;padding:30px 16px;text-align:center;box-shadow:0 4px 15px rgba(236,72,153,0.15)}
-        .site-header h1 { margin: 0; font-size: 2.4rem; font-weight: 800; }
-        .site-header p { margin: 8px 0 0 0; opacity: 0.95; font-size: 1.1rem; }
-        .site-nav{background:#0f172a;padding:.75rem 1rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
-        .nav-list{list-style:none;margin:0;padding:0;display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-        .nav-list a{display:inline-block;text-decoration:none;color:#fff;padding:.6rem .95rem;border-radius:.55rem;font-weight: 600;font-size:0.95rem;transition:all 0.2s;}
-        .nav-list a:hover{background:rgba(255,255,255,.16)}
-        .nav-list a[aria-current="page"]{background:#fff;color:#0f172a;font-weight:700}
-        
-        .main{max-width:800px;margin:0 auto;padding:50px 16px}
-        .brand-hub { background: #fff; border: 1px solid #e5e7eb; border-radius: 20px; padding: 40px 20px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        .brand-logo { font-size: 5rem; margin-bottom: 20px; }
-        .brand-hub h2 { color: #0f172a; font-size: 2rem; margin: 0 0 15px; }
-        .brand-hub p { color: #4b5563; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        
-        .buy-btn { display: inline-block; padding: 16px 40px; background: #ec4899; color: #fff; text-decoration: none; border-radius: 30px; font-weight: 800; font-size: 1.1rem; transition: transform 0.2s, background 0.2s; box-shadow: 0 4px 15px rgba(236,72,153,0.3); }
-        .buy-btn:hover { background: #db2777; transform: scale(1.03); }
-        @media (max-width:640px){.nav-list a{width:100%;text-align:center}}
-    </style>
-</head>
-<body>
-    <header class="site-header">
-        <h1>NikolaToy Store</h1>
-        <p>Premium Toys, Kids Wear, Gifting & Cute Accessories</p>
-    </header>
-    
-    <nav class="site-nav">
-        <ul class="nav-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="Mobiles.html">Amazon</a></li>
-            <li><a href="Electronics.html">MaviGadget</a></li>
-            <li><a href="Fashion.html">Fashion Deals</a></li>
-            <li><a href="NikolaToy.html" aria-current="page">🧸 NikolaToy</a></li>
-            <li><a href="StoreOffers.html" style="background: #10b981; color: white; border-radius: 8px;">🔥 All Store Offers</a></li>
-        </ul>
-    </nav>
-
-    <main class="main">
-        <div class="brand-hub">
-            <div class="brand-logo">🧸</div>
-            <h2>NikolaToy Official</h2>
-            <p>Grab handpicked premium toys, organic kids wear, developmental blocks, and beautiful gifts directly from NikolaToy.</p>
-            <a href="https://nikolatoy.com" class="buy-btn" target="_blank" rel="noopener noreferrer">Explore NikolaToy ➔</a>
-        </div>
-    </main>
-
-    <footer style="text-align: center; padding: 25px; color: #6b7280; font-size: 0.9rem; margin-top: 50px;">
-        &copy; SN Deals. All rights reserved.
-    </footer>
-</body>
-</html>
+<html lang="hi"><head><meta charset="UTF-8"><title>Amazon Deals</title><style>.banner{background:#ff9900;color:white;padding:20px;text-align:center;border-radius:10px;margin-bottom:20px}.card{border:1px solid #ddd;padding:15px;margin:10px;border-radius:10px;text-align:center}.btn{display:block;background:#28a745;color:white;padding:10px;text-decoration:none;border-radius:5px;margin-top:10px}.price{color:red;font-weight:bold}</style></head><body>
+<div class="banner"><h2>🔥 Amazon Mega Sale: Up to 80% OFF! 🔥</h2></div>
+<div id="product-container"></div>
+<script>
+const myCategory = 'NikolaToy;
+fetch('products.json').then(r=>r.json()).then(data=>{
+const container = document.getElementById('product-container');
+data.filter(p=>p.category === myCategory).forEach(p=>{
+container.innerHTML += `<div class="card"><h3>${p.name}</h3><p class="price">${p.price}</p><a href="${p.link}" target="_blank" class="btn">Grab Deal</a></div>`;
+});});
+</script></body></html>
