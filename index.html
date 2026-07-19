@@ -3,41 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SN DEALS - LIVE OFFERS</title>
+    <title>SN DEALS - Premium Offers</title>
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <style>
-        * { box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f4f4; }
-        .header { background: #232f3e; color: #fff; padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #f0f2f5; }
+        .header { background: #2874f0; color: #fff; padding: 15px; text-align: center; font-weight: bold; font-size: 22px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .section { background: #fff; margin: 10px 0; padding: 15px; }
-        .sec-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #333; text-transform: uppercase; }
+        .sec-title { font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333; text-transform: uppercase; border-left: 4px solid #2874f0; padding-left: 10px; }
         
-        /* Swiper Slider Styles */
         .swiper { width: 100%; }
         .swiper-slide { 
-            width: 140px; 
-            border: 1px solid #e0e0e0; 
-            border-radius: 10px; 
-            padding: 12px; 
-            text-align: center; 
-            background: #fff; 
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            width: 150px; border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; 
+            text-align: center; background: #fff; display: flex; flex-direction: column; 
+            justify-content: space-between; transition: transform 0.2s;
         }
+        .swiper-slide:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         
-        .card-name { font-size: 13px; height: 35px; overflow: hidden; margin-bottom: 8px; color: #444; }
-        .price { color: #b12704; font-weight: bold; margin-bottom: 10px; font-size: 13px; }
-        .btn { display: block; background: #ff9900; color: #000; padding: 8px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 12px; }
+        .discount-tag { background: #388e3c; color: white; font-size: 10px; padding: 3px 6px; border-radius: 4px; align-self: flex-start; font-weight: bold; margin-bottom: 5px; }
+        .card-name { font-size: 13px; height: 35px; overflow: hidden; margin-bottom: 8px; color: #212121; text-align: left; }
+        .price { font-size: 15px; font-weight: bold; color: #fb641b; margin-bottom: 10px; text-align: left; }
+        .btn { display: block; background: #fb641b; color: #fff; padding: 9px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 13px; text-align: center; }
+        .btn:hover { background: #e05510; }
     </style>
 </head>
 <body>
 
-    <div class="header"><h1>SN DEALS</h1></div>
+    <div class="header">SN DEALS</div>
     <div id="content"></div>
 
-    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         fetch('products.json')
@@ -56,9 +50,10 @@
                 data.filter(p => p.category === cat).forEach(p => {
                     sectionHTML += `
                         <div class="swiper-slide">
+                            <div class="discount-tag">OFFER</div>
                             <div class="card-name">${p.name}</div>
                             <div class="price">${p.price}</div>
-                            <a href="${p.link}" target="_blank" class="btn">Grab Deal</a>
+                            <a href="${p.link}" target="_blank" class="btn">BUY NOW</a>
                         </div>`;
                 });
                 
@@ -66,7 +61,6 @@
                 container.innerHTML += sectionHTML;
             });
 
-            // Initialize Swiper for all sections
             new Swiper(".mySwiper", {
                 slidesPerView: "auto",
                 spaceBetween: 10,
