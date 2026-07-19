@@ -3,39 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SN DEALS</title>
+    <title>SN DEALS - LIVE OFFERS</title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <style>
         * { box-sizing: border-box; }
-        body { font-family: sans-serif; margin: 0; background: #f4f4f4; }
-        .header { background: #232f3e; color: #fff; padding: 15px; text-align: center; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f4f4; }
+        .header { background: #232f3e; color: #fff; padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .section { background: #fff; margin: 10px 0; padding: 15px; }
+        .sec-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #333; text-transform: uppercase; }
         
-        .section { background: #fff; margin: 10px 0; padding: 10px; }
-        .sec-title { font-size: 16px; font-weight: bold; margin-bottom: 10px; color: #333; text-transform: uppercase; }
-        
-        /* यह सबसे जरूरी हिस्सा है - कार्ड्स को एक लाइन में रखने के लिए */
-        .scroll { 
-            display: flex; 
-            overflow-x: auto; 
-            gap: 10px; 
-            padding-bottom: 10px; 
-            flex-wrap: nowrap; 
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .card { 
-            min-width: 130px; 
-            max-width: 130px; 
-            flex: 0 0 auto; 
-            border: 1px solid #ddd; 
-            border-radius: 8px; 
-            padding: 10px; 
+        /* Swiper Slider Styles */
+        .swiper { width: 100%; }
+        .swiper-slide { 
+            width: 140px; 
+            border: 1px solid #e0e0e0; 
+            border-radius: 10px; 
+            padding: 12px; 
             text-align: center; 
             background: #fff; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         
-        .card-name { font-size: 12px; height: 30px; overflow: hidden; margin-bottom: 5px; color: #555; }
-        .price { color: #b12704; font-weight: bold; margin: 5px 0; font-size: 12px; }
-        .btn { display: block; background: #ff9900; color: #000; padding: 6px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 12px; }
+        .card-name { font-size: 13px; height: 35px; overflow: hidden; margin-bottom: 8px; color: #444; }
+        .price { color: #b12704; font-weight: bold; margin-bottom: 10px; font-size: 13px; }
+        .btn { display: block; background: #ff9900; color: #000; padding: 8px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 12px; }
     </style>
 </head>
 <body>
@@ -43,6 +37,8 @@
     <div class="header"><h1>SN DEALS</h1></div>
     <div id="content"></div>
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         fetch('products.json')
         .then(res => res.json())
@@ -50,29 +46,33 @@
             const container = document.getElementById('content');
             const categories = [...new Set(data.map(p => p.category))];
             
-            container.innerHTML = ''; // पुराना कंटेंट साफ करें
-            
             categories.forEach(cat => {
                 let sectionHTML = `
                     <div class="section">
                         <div class="sec-title">${cat}</div>
-                        <div class="scroll">
-                `;
+                        <div class="swiper mySwiper">
+                            <div class="swiper-wrapper">`;
                 
                 data.filter(p => p.category === cat).forEach(p => {
                     sectionHTML += `
-                        <div class="card">
+                        <div class="swiper-slide">
                             <div class="card-name">${p.name}</div>
                             <div class="price">${p.price}</div>
                             <a href="${p.link}" target="_blank" class="btn">Grab Deal</a>
                         </div>`;
                 });
                 
-                sectionHTML += `</div></div>`;
+                sectionHTML += `</div></div></div>`;
                 container.innerHTML += sectionHTML;
             });
-        })
-        .catch(err => console.error("Error loading JSON:", err));
+
+            // Initialize Swiper for all sections
+            new Swiper(".mySwiper", {
+                slidesPerView: "auto",
+                spaceBetween: 10,
+                freeMode: true,
+            });
+        });
     </script>
 </body>
 </html>
